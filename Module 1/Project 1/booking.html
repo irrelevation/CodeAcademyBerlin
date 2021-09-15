@@ -20,12 +20,83 @@
                 <li class="nav-link"><a href="events.html">Events</a></li>
                 <li class="nav-link"><a href="artists.html">Artists</a></li>
                 <li class="nav-link"><a href="about.html">About</a></li>
-                <button>Booking</button>
+                <a href="booking.html"><button>Booking</button></a>
             </ul>
         </nav>
     </header>
     <main>
-
+        <form action="" role="form">
+            <section id="form-overview">
+                <div class="form-overview-element">Artists</div>
+                <div class="form-overview-element">Event Info</div>
+                <div class="form-overview-element">Personal Info</div>
+                <div class="form-overview-element">Review</div>
+            </section>
+            <section id="form-artists">
+                <h2>Select Artists</h2>
+                <div class="artist">
+                    <input type="checkbox" name="artist" id="annieo" value="annieo">
+                    <label for="annieo">Annie O</label>
+                </div>
+                <div class="artist">
+                    <input type="checkbox" name="artist" id="modestcrow" value="modestcrow">
+                    <label for="modestcrow">Modest Crow</label>
+                </div>
+                <div class="artist">
+                    <input type="checkbox" name="artist" id="momentum" value="momentum">
+                    <label for="momentum">Mømentum</label>
+                </div>
+                <div class="artist">
+                    <input type="checkbox" name="artist" id="soulbait" value="soulbait">
+                    <label for="soulbait">Soul Bait</label>
+                </div>
+                <div class="artist">
+                    <input type="checkbox" name="artist" id="syriantal" value="syriantal">
+                    <label for="syriantal">Syriantal</label>
+                </div>
+                <div class="artist">
+                    <input type="checkbox" name="artist" id="henrik" value="henrik">
+                    <label for="henrik">The Henrik Maneuver</label>
+                </div>
+                <div class="artist">
+                    <input type="checkbox" name="artist" id="tripolitan" value="tripolitan">
+                    <label for="tripolitan">Tripolitan</label>
+                </div>
+                <div class="artist">
+                    <input type="checkbox" name="artist" id="varu" value="varu">
+                    <label for="varu">Varu</label>
+                </div>
+                <div class="artist">
+                    <input type="checkbox" name="artist" id="zusan" value="zusan">
+                    <label for="zusan">Zusan</label>
+                </div>
+            </section>
+            <section id="form-event">
+                <h2>Event Info</h2>
+                <label for="date">Date</label>
+                <input type="date" name="date" id="date">
+                <label for="location">Location</label>
+                <input type="text" name="location" id="location">
+                <label for="info">Event Info</label>
+                <textarea name="info" id="info" cols="30" rows="10" placeholder="Tell us something about your event =)"></textarea>
+            </section>
+            <section id="form-personal">
+                <h2>Personal Info</h2>
+                <label for="Name">Name</label>
+                <input type="text" name="name" id="name">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email">
+                <label for="organization">Organization</label>
+                <input type="text" name="organization" id="organization">
+            </section>
+            <section id="form-review">
+                <h2>Review</h2>
+            </section>
+            <nav>
+                <button type="button">Previous</button>
+                <button type="button">Next</button>
+            </nav>
+        </form>
     </main>
     <footer>
         <a href="mailto:example@example.example">Contact Us</a>
