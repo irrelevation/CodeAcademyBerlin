@@ -22,6 +22,8 @@ header {
   display: flex;
   justify-content: space-between;
   height: 80px;
+  background-color: hsl(0, 0%, 8%);
+  box-shadow: 0 0 4px 0 black;
 }
 
 .logo {
@@ -29,32 +31,31 @@ header {
   justify-content: flex-start;
   align-items: center;
   font-size: 1.25rem;
+  letter-spacing: 0.2em;
   text-decoration: none;
+  margin-left: 24px;
 }
 
 .logo-img {
   height: 64px;
-  margin-right: 16px;
+  margin-right: 24px;
 }
 
 .navbar {
   display: flex;
   align-items: center;
   justify-content: right;
-  flex-basis: 50%;
 }
 
 .nav-link {
-  flex-grow: 1;
   text-decoration: none;
+  padding: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
 }
 
 .nav-link:hover {
-  text-decoration: underline;
-}
-
-main {
-  height: calc(100vh - 160px);
+  background-color: hsl(0, 0%, 16%);
 }
 
 .landingpage {
@@ -72,4 +73,84 @@ footer {
 
 footer a {
   text-decoration: none;
+}
+
+/* Events Page */
+main.events nav {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+main.events nav a {
+  margin: 16px;
+  text-decoration: none;
+}
+
+main.events nav a:hover {
+  text-decoration: underline;
+}
+
+main.events img {
+  width: 256px;
+}
+
+.event {
+  margin: 16px;
+  background-color: hsl(0, 0%, 8%);
+  max-width: 600px;
+  padding: 16px;
+  border-radius: 1em;
+}
+
+.event-info {
+  margin: 0;
+}
+
+.event-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Artists */
+
+main.artists {
+  display: flex;
+  justify-content: center;
+}
+
+.artist-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 800px;
+}
+
+.artist img {
+  width: 256px;
+}
+
+.artist {
+  position: relative;
+}
+
+.artist-info {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  text-align: right;
+  background-color: hsl(0, 0%, 8%, 70%);
+  width: 256px;
+}
+
+.artist-info h2 {
+  margin-bottom: 0px;
+  line-height: 1em;
+  font-size: 1.25rem;
+  margin-right: 8px;
+}
+
+.artist-info p {
+  margin: 0px 8px 8px 0px;
 }
