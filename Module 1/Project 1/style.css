@@ -70,6 +70,65 @@ header {
   align-items: center;
 }
 
+@keyframes flicker {
+  0% {
+    opacity: 0.1;
+    filter: drop-shadow(0px 0px 24px white);
+  }
+
+  2% {
+    opacity: 1;
+    filter: drop-shadow(0px 0px 24px white);
+  }
+  8% {
+    opacity: 0.1;
+    filter: drop-shadow(0px 0px 24px white);
+  }
+  9% {
+    opacity: 1;
+    filter: drop-shadow(0px 0px 24px white);
+  }
+  12% {
+    opacity: 0.1;
+    filter: drop-shadow(0px 0px 24px white);
+  }
+  20% {
+    opacity: 1;
+    filter: drop-shadow(0px 0px 24px white);
+  }
+  25% {
+    opacity: 0.3;
+    filter: drop-shadow(0px 0px 24px white);
+  }
+  30% {
+    opacity: 1;
+    filter: drop-shadow(0px 0px 24px white);
+  }
+
+  70% {
+    opacity: 0.7;
+    filter: drop-shadow(0px 0px 24px white);
+  }
+
+  72% {
+    opacity: 0.2;
+    filter: drop-shadow(0px 0px 24px white);
+  }
+
+  77% {
+    opacity: 0.9;
+    filter: drop-shadow(0px 0px 24px white);
+  }
+  100% {
+    opacity: 0.9;
+    filter: drop-shadow(0px 0px 24px white);
+  }
+}
+
+.landingpage img {
+  animation: flicker 3s linear infinite;
+}
+
 footer {
   height: 80px;
   display: flex;
@@ -240,7 +299,8 @@ form {
   align-items: start;
 }
 
-form section {
+form section:not(:last-child) {
+  flex-basis: 400px;
   display: none;
 }
 
@@ -248,8 +308,18 @@ form section:target {
   display: block;
 }
 
+form > section h2 {
+  font-weight: 400;
+  margin: 0 0 16px 0;
+}
+
+form input:focus-within,
+form textarea:focus-within {
+  outline: 0;
+  border: 2px solid hsl(120, 93%, 84%);
+}
+
 #overview {
-  display: block;
   margin-right: 6vw;
   flex: 0 0 200px;
   order: -1;
@@ -278,7 +348,7 @@ label .artist-name {
 }
 
 :checked + label {
-  border: 2px solid white;
+  border: 2px solid hsl(120, 93%, 84%);
 }
 
 #artists {
@@ -292,7 +362,11 @@ label .artist-name {
   margin: 4vh auto;
 }
 
-form input[type="text"] {
+form input,
+form textarea {
+  border-radius: 4px;
+  border: none;
+  min-height: 2rem;
 }
 
 .flex-container {
