@@ -206,13 +206,32 @@ main.artists {
   margin-right: 1rem;
 }
 
-.active .overview-element-id {
-  background-color: white;
-  color: hsl(0, 0%, 8%);
+/* Styling the overview depending on the form step */
+
+#select-artists:target ~ #overview :nth-child(1).overview-element,
+#event-info:target ~ #overview :nth-child(2),
+#personal-info:target ~ #overview :nth-child(3),
+#confirmation:target ~ #overview :nth-child(4) {
+  color: white;
 }
 
-.overview-element.active {
-  color: white;
+#select-artists:target
+  ~ #overview
+  :nth-child(1).overview-element
+  .overview-element-id,
+#event-info:target
+  ~ #overview
+  :nth-child(2).overview-element
+  .overview-element-id,
+#personal-info:target
+  ~ #overview
+  :nth-child(3).overview-element
+  .overview-element-id,
+#confirmation:target
+  ~ #overview
+  :nth-child(4).overview-element
+  .overview-element-id {
+  background-color: white;
 }
 
 form {
@@ -229,10 +248,11 @@ form section:target {
   display: block;
 }
 
-#event-info:target #overview {
+#overview {
   display: block;
   margin-right: 6vw;
   flex: 0 0 200px;
+  order: -1;
 }
 
 form label img {
