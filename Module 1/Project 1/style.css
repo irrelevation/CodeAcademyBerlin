@@ -24,6 +24,7 @@ header {
   height: 80px;
   background-color: hsl(0, 0%, 8%);
   box-shadow: 0 0 4px 0 black;
+  margin-bottom: 4vh;
 }
 
 .logo {
@@ -74,13 +75,21 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: hsl(0, 0%, 8%);
+  box-shadow: 4px 0 0 0 black;
+  margin-top: 4vh;
 }
 
 footer a {
   text-decoration: none;
 }
 
+main {
+  min-height: calc(100vh - 160px);
+}
+
 /* Events Page */
+
 main.events nav {
   display: flex;
   justify-content: center;
@@ -103,9 +112,10 @@ main.events img {
 .event {
   margin: 16px;
   background-color: hsl(0, 0%, 8%);
-  max-width: 600px;
+  width: 30vw;
   padding: 16px;
   border-radius: 1em;
+  flex-grow: 1;
 }
 
 .event-info {
@@ -114,10 +124,27 @@ main.events img {
 
 .event-container {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
 }
 
-/* Artists */
+.events {
+  max-width: 1000px;
+  margin: auto;
+}
+
+time {
+  color: hsl(0, 0%, 33%);
+}
+
+.location::before {
+  content: "@ ";
+}
+
+th {
+  text-align: left;
+}
+
+/* Artists Page */
 
 main.artists {
   display: flex;
@@ -189,13 +216,27 @@ main.artists {
 }
 
 form {
-  margin-top: 2rem;
   margin-left: 48px;
+  display: flex;
+  align-items: start;
+}
+
+form section {
+  display: none;
+}
+
+form section:target {
+  display: block;
+}
+
+#event-info:target #overview {
+  display: block;
+  margin-right: 6vw;
+  flex: 0 0 200px;
 }
 
 form label img {
   width: 128px;
-  /* border-radius: 50%; */
 }
 
 .artist input[type="checkbox"] {
@@ -226,6 +267,20 @@ label .artist-name {
   max-width: 600px;
 }
 
+#about {
+  max-width: 1200px;
+  margin: 4vh auto;
+}
+
 form input[type="text"] {
-  border-radius: 1rem;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-container > nav {
+  display: flex;
+  justify-content: space-between;
 }

@@ -19,7 +19,7 @@
             <a href="events.html" class="nav-link">Events</a>
             <a href="artists.html" class="nav-link">Artists</a>
             <a href="about.html" class="nav-link">About</a>
-            <a href="booking.html" class="nav-link">Booking</a>
+            <a href="booking.html#select-artists" class="nav-link">Booking</a>
         </nav>
     </header>
 
@@ -43,7 +43,7 @@
                     Review
                 </div>
             </section>
-            <section>
+            <section id="select-artists">
                 <h2>Select Artists</h2>
                 <div id="artists">
                     <div class="artist">
@@ -119,32 +119,47 @@
                         </label>
                     </div>
                 </div>
+                <a href="#event-info">
+                    Next
+                </a>
                 </section>
-                <section id="event">
-                    <h2>Event Info</h2>
-                    <label for="date">Date</label>
-                    <input type="date" name="date" id="date">
-                    <label for="location">Location</label>
-                    <input type="text" name="location" id="location">
-                    <label for="info">Event Info</label>
-                    <textarea name="info" id="info" cols="30" rows="10" placeholder="Tell us something about your event =)"></textarea>
+                <section id="event-info">
+                    <div class="flex-container">
+                        <h2>Event Info</h2>
+                        <label for="date">Date</label>
+                        <input type="date" name="date" id="date">
+                        <label for="location">Location</label>
+                        <input type="text" name="location" id="location">
+                        <label for="info">Event Info</label>
+                        <textarea name="info" id="info" cols="30" rows="10" placeholder="Tell us something about your event =)"></textarea>
+                        <nav>
+                            <a href="#select-artists">Back</a>
+                            <a href="#personal-info">Next</a>
+                        </nav>
+                    </div>
                 </section>
-                <section id="personal">
-                    <h2>Personal Info</h2>
-                    <label for="Name">Name</label>
-                    <input type="text" name="name" id="name">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email">
-                    <label for="organization">Organization</label>
-                <input type="text" name="organization" id="organization">
-            </section>
-            <section id="confirmation">
-                <h2>Confirmation</h2>
-            </section>
-            <nav>
-                <button type="button">Previous</button>
-                <button type="button">Next</button>
-            </nav>
+                <section id="personal-info">
+                    <div class="flex-container">
+                        <h2>Personal Info</h2>
+                        <label for="Name">Name</label>
+                        <input type="text" name="name" id="name">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email">
+                        <label for="organization">Organization</label>
+                        <input type="text" name="organization" id="organization">
+                        <nav>
+                            <a href="#event-info">Back</a>
+                            <a href="#confirmation">Next</a>
+                        </nav>
+                    </div>
+
+                </section>
+                <section id="confirmation">
+                    <div class="flex-container">
+                        <h2>Confirmation</h2>
+                        <a href="#personal-info">Back</a>
+                    </div>
+                </section>
         </form>
     </main>
     <footer>
