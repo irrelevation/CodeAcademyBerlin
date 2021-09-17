@@ -52,6 +52,11 @@ header {
   padding: 16px;
   text-transform: uppercase;
   letter-spacing: 0.2em;
+  border-right: 1px solid white;
+}
+
+.nav-link:last-of-type {
+  border: none;
 }
 
 .nav-link:hover {
@@ -126,7 +131,7 @@ main.artists {
   max-width: 800px;
 }
 
-.artist img {
+.artist-image img {
   width: 256px;
 }
 
@@ -153,4 +158,74 @@ main.artists {
 
 .artist-info p {
   margin: 0px 8px 8px 0px;
+}
+
+/* Form */
+
+.overview-element {
+  margin-bottom: 2rem;
+  color: hsl(0, 0%, 33%);
+}
+
+.overview-element-id {
+  display: inline-block;
+  line-height: 24px;
+  background-color: hsl(0, 0%, 33%);
+  color: hsl(0, 0%, 18%);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  text-align: center;
+  margin-right: 1rem;
+}
+
+.active .overview-element-id {
+  background-color: white;
+  color: hsl(0, 0%, 8%);
+}
+
+.overview-element.active {
+  color: white;
+}
+
+form {
+  margin-top: 2rem;
+  margin-left: 48px;
+}
+
+form label img {
+  width: 128px;
+  /* border-radius: 50%; */
+}
+
+.artist input[type="checkbox"] {
+  display: none;
+}
+
+.artist label {
+  display: block;
+  position: relative;
+}
+
+label .artist-name {
+  width: 100%;
+  font-size: 0.8rem;
+  position: absolute;
+  bottom: 0px;
+  text-align: right;
+  background-color: hsl(0, 0%, 8%, 70%);
+}
+
+:checked + label {
+  border: 2px solid white;
+}
+
+#artists {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 600px;
+}
+
+form input[type="text"] {
+  border-radius: 1rem;
 }

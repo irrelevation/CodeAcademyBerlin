@@ -25,66 +25,120 @@
 
     <main>
         <form action="" role="form">
-            <section id="form-overview">
-                <div class="form-overview-element">Artists</div>
-                <div class="form-overview-element">Event Info</div>
-                <div class="form-overview-element">Personal Info</div>
-                <div class="form-overview-element">Review</div>
+            <section id="overview">
+                <div class="overview-element active">
+                    <div class="overview-element-id">1</div>
+                    Artists
+                </div>
+                <div class="overview-element">
+                    <div class="overview-element-id">2</div>
+                    Event Info
+                </div>
+                <div class="overview-element">
+                    <div class="overview-element-id">3</div>
+                    Personal Info
+                </div>
+                <div class="overview-element">
+                    <div class="overview-element-id">4</div>
+                    Review
+                </div>
             </section>
-            <section id="form-artists">
+            <section>
                 <h2>Select Artists</h2>
-                <div class="artist">
-                    <input type="checkbox" name="artist" id="annieo" value="annieo">
-                    <label for="annieo">Annie O</label>
+                <div id="artists">
+                    <div class="artist">
+                        <input type="checkbox" name="artist" id="annieo" value="annieo">
+                        <label for="annieo">
+                            <img src="img/Annie-768x768.jpg" alt="Annie O">
+                            <div class="artist-name">
+                                Annie O
+                            </div>
+                        </label>
+                    </div>
+                    <div class="artist">
+                        <input type="checkbox" name="artist" id="modestcrow" value="modestcrow">
+                        <label for="modestcrow">
+                            <img src="img/modest-768x768.jpg" alt="Modest Crow">
+                            <div class="artist-name">
+                                Modest Crow
+                            </div>
+                        </label>
+                    </div>
+                    <div class="artist">
+                        <input type="checkbox" name="artist" id="momentum" value="momentum">
+                        <label for="momentum">
+                            <img src="img/techj-768x768.jpg" alt="Mømentum">
+                            <div class="artist-name">
+                                Mømentum
+                            </div>
+                        </label>
+                    </div>
+                    <div class="artist">
+                        <input type="checkbox" name="artist" id="syriantal" value="syriantal">
+                        <label for="syriantal">
+                            <img src="img/syrin-768x768.jpg" alt="Syriantal">
+                            <div class="artist-name">
+                                Syriantal
+                            </div>
+                        </label>
+                    </div>
+                    <div class="artist">
+                        <input type="checkbox" name="artist" id="henrik" value="henrik">
+                        <label for="henrik">
+                            <img src="img/henr-768x768.jpg" alt="The Henrik Maneuver">
+                            <div class="artist-name">
+                                The Henrik Maneuver
+                            </div>
+                        </label>
+                    </div>
+                    <div class="artist">
+                        <input type="checkbox" name="artist" id="tripolitan" value="tripolitan">
+                        <label for="tripolitan">
+                            <img src="img/trip.jpg" alt="Tripolitan">
+                            <div class="artist-name">
+                                Tripolitan
+                            </div>
+                        </label>
+                    </div>
+                    <div class="artist">
+                        <input type="checkbox" name="artist" id="varu" value="varu">
+                        <label for="varu">
+                            <img src="img/Var-768x768.jpg" alt="Varu">
+                            <div class="artist-name">
+                                Varu
+                            </div>
+                        </label>
+                    </div>
+                    <div class="artist">
+                        <input type="checkbox" name="artist" id="zusan" value="zusan">
+                        <label for="zusan">
+                            <img src="img/zus-768x768.jpg" alt="Zusan">
+                            <div class="artist-name">
+                                Zusan
+                            </div>
+                        </label>
+                    </div>
                 </div>
-                <div class="artist">
-                    <input type="checkbox" name="artist" id="modestcrow" value="modestcrow">
-                    <label for="modestcrow">Modest Crow</label>
-                </div>
-                <div class="artist">
-                    <input type="checkbox" name="artist" id="momentum" value="momentum">
-                    <label for="momentum">Mømentum</label>
-                </div>
-                <div class="artist">
-                    <input type="checkbox" name="artist" id="syriantal" value="syriantal">
-                    <label for="syriantal">Syriantal</label>
-                </div>
-                <div class="artist">
-                    <input type="checkbox" name="artist" id="henrik" value="henrik">
-                    <label for="henrik">The Henrik Maneuver</label>
-                </div>
-                <div class="artist">
-                    <input type="checkbox" name="artist" id="tripolitan" value="tripolitan">
-                    <label for="tripolitan">Tripolitan</label>
-                </div>
-                <div class="artist">
-                    <input type="checkbox" name="artist" id="varu" value="varu">
-                    <label for="varu">Varu</label>
-                </div>
-                <div class="artist">
-                    <input type="checkbox" name="artist" id="zusan" value="zusan">
-                    <label for="zusan">Zusan</label>
-                </div>
-            </section>
-            <section id="form-event">
-                <h2>Event Info</h2>
-                <label for="date">Date</label>
-                <input type="date" name="date" id="date">
-                <label for="location">Location</label>
-                <input type="text" name="location" id="location">
-                <label for="info">Event Info</label>
-                <textarea name="info" id="info" cols="30" rows="10" placeholder="Tell us something about your event =)"></textarea>
-            </section>
-            <section id="form-personal">
-                <h2>Personal Info</h2>
-                <label for="Name">Name</label>
-                <input type="text" name="name" id="name">
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email">
-                <label for="organization">Organization</label>
+                </section>
+                <section id="event">
+                    <h2>Event Info</h2>
+                    <label for="date">Date</label>
+                    <input type="date" name="date" id="date">
+                    <label for="location">Location</label>
+                    <input type="text" name="location" id="location">
+                    <label for="info">Event Info</label>
+                    <textarea name="info" id="info" cols="30" rows="10" placeholder="Tell us something about your event =)"></textarea>
+                </section>
+                <section id="personal">
+                    <h2>Personal Info</h2>
+                    <label for="Name">Name</label>
+                    <input type="text" name="name" id="name">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email">
+                    <label for="organization">Organization</label>
                 <input type="text" name="organization" id="organization">
             </section>
-            <section id="form-confirmation">
+            <section id="confirmation">
                 <h2>Confirmation</h2>
             </section>
             <nav>
