@@ -391,6 +391,8 @@ label .artist-name {
   max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
+  line-height: 1.8rem;
+  text-align: justify;
 }
 
 form input,
