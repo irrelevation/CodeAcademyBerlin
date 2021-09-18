@@ -38,6 +38,7 @@ header {
   justify-content: flex-start;
   align-items: center;
   font-size: 1.25rem;
+  text-transform: uppercase;
   letter-spacing: 0.2em;
   text-decoration: none;
   margin-left: 24px;
@@ -114,7 +115,7 @@ footer {
   justify-content: center;
   align-items: center;
   background-color: hsl(0, 0%, 8%);
-  box-shadow: 20px 0 0 0 black;
+  box-shadow: 0 0 4px 0 black;
 }
 
 footer a {
@@ -195,8 +196,9 @@ main.artists {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
-  align-content: center;
-  max-width: 800px;
+  align-items: center;
+  gap: 2rem;
+  max-width: 1000px;
 }
 
 .artist-image img {
@@ -207,6 +209,7 @@ main.artists {
   position: relative;
   overflow: hidden;
   height: 256px;
+  box-shadow: 4px black;
 }
 
 .artist-info {
@@ -250,6 +253,8 @@ main.artists {
 /* Form */
 
 .overview-element {
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
   margin-bottom: 2rem;
   color: hsl(0, 0%, 33%);
 }
@@ -340,7 +345,7 @@ form label img {
 }
 
 form label img:hover {
-  filter: grayscale(0);
+  border: 2px solid white;
 }
 
 .artist input[type="checkbox"] {
@@ -366,6 +371,7 @@ label .artist-name {
 
 :checked + label img {
   filter: grayscale(0);
+  border: 2px solid white;
 }
 
 #artists {
@@ -374,6 +380,7 @@ label .artist-name {
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: flex-start;
+  gap: 4px;
 }
 
 #artists .artist {
@@ -409,6 +416,7 @@ form nav {
 
 form nav > a {
   text-decoration: none;
+  letter-spacing: 0.1rem;
   display: block;
   background-color: hsl(0, 0%, 16%);
   border-radius: 4px;
