@@ -93,6 +93,7 @@ header {
     hsl(0, 0%, 10%) 100%
   );
   background-size: 400%;
+  background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
   animation: sweep 6s linear infinite alternate;
