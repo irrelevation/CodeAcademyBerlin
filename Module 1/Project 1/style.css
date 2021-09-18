@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap");
 
 *,
 *::before,
@@ -9,9 +9,13 @@
 body {
   padding: 0px;
   margin: 0px;
-  background-color: hsl(0, 0%, 12%);
+  background-color: hsl(0, 0%, 10%);
   color: white;
   font-family: Poppins, sans-serif;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
 }
 
 a {
@@ -19,12 +23,14 @@ a {
 }
 
 header {
+  position: fixed;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   height: 80px;
   background-color: hsl(0, 0%, 8%);
   box-shadow: 0 0 4px 0 black;
-  margin-bottom: 4vh;
+  z-index: 2;
 }
 
 .logo {
@@ -38,7 +44,7 @@ header {
 }
 
 .logo-img {
-  height: 64px;
+  height: 56px;
   margin-right: 24px;
 }
 
@@ -61,72 +67,44 @@ header {
 }
 
 .nav-link:hover {
-  background-color: hsl(0, 0%, 16%);
+  background-color: hsl(0, 0%, 10%);
 }
 
 .landingpage {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-@keyframes flicker {
-  0% {
-    opacity: 0.1;
-    filter: drop-shadow(0px 0px 24px white);
-  }
-
-  2% {
-    opacity: 1;
-    filter: drop-shadow(0px 0px 24px white);
-  }
-  8% {
-    opacity: 0.1;
-    filter: drop-shadow(0px 0px 24px white);
-  }
-  9% {
-    opacity: 1;
-    filter: drop-shadow(0px 0px 24px white);
-  }
-  12% {
-    opacity: 0.1;
-    filter: drop-shadow(0px 0px 24px white);
-  }
-  20% {
-    opacity: 1;
-    filter: drop-shadow(0px 0px 24px white);
-  }
-  25% {
-    opacity: 0.3;
-    filter: drop-shadow(0px 0px 24px white);
-  }
-  30% {
-    opacity: 1;
-    filter: drop-shadow(0px 0px 24px white);
-  }
-
-  70% {
-    opacity: 0.7;
-    filter: drop-shadow(0px 0px 24px white);
-  }
-
-  72% {
-    opacity: 0.2;
-    filter: drop-shadow(0px 0px 24px white);
-  }
-
-  77% {
-    opacity: 0.9;
-    filter: drop-shadow(0px 0px 24px white);
-  }
-  100% {
-    opacity: 0.9;
-    filter: drop-shadow(0px 0px 24px white);
-  }
+.landingpage h1 {
+  font-size: 8vw;
+  font-family: poppins;
+  font-weight: 200;
+  user-select: none;
+  background: linear-gradient(
+    90deg,
+    hsl(0, 0%, 10%) 0%,
+    hsl(0, 0%, 10%) 40%,
+    #444 45%,
+    white 50%,
+    #444 55%,
+    hsl(0, 0%, 10%) 60%,
+    hsl(0, 0%, 10%) 100%
+  );
+  background-size: 400%;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: sweep 6s linear infinite alternate;
 }
 
-.landingpage img {
-  animation: flicker 3s linear infinite;
+@keyframes sweep {
+  0% {
+    background-position: 100%;
+  }
+  100% {
+    background-position: 0%;
+  }
 }
 
 footer {
@@ -135,8 +113,7 @@ footer {
   justify-content: center;
   align-items: center;
   background-color: hsl(0, 0%, 8%);
-  box-shadow: 4px 0 0 0 black;
-  margin-top: 4vh;
+  box-shadow: 20px 0 0 0 black;
 }
 
 footer a {
@@ -145,6 +122,8 @@ footer a {
 
 main {
   min-height: calc(100vh - 160px);
+  margin-top: 80px;
+  padding: 4vh;
 }
 
 /* Events Page */
@@ -152,12 +131,12 @@ main {
 main.events nav {
   display: flex;
   justify-content: center;
-  margin-top: 16px;
 }
 
 main.events nav a {
-  margin: 16px;
+  margin-right: 6rem;
   text-decoration: none;
+  font-size: 1.5rem;
 }
 
 main.events nav a:hover {
@@ -171,6 +150,7 @@ main.events img {
 .event {
   margin: 16px;
   background-color: hsl(0, 0%, 8%);
+  border: 2px solid hsl(0, 0%, 33%);
   width: 30vw;
   padding: 16px;
   border-radius: 1em;
@@ -188,7 +168,6 @@ main.events img {
 
 .events {
   max-width: 1000px;
-  margin: auto;
 }
 
 time {
@@ -214,6 +193,8 @@ main.artists {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: center;
   max-width: 800px;
 }
 
@@ -223,27 +204,46 @@ main.artists {
 
 .artist {
   position: relative;
+  overflow: hidden;
+  height: 256px;
 }
 
 .artist-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+  height: 100%;
   position: absolute;
+  padding: 16px;
+  top: 70%;
   bottom: 0;
   right: 0;
   z-index: 1;
   text-align: right;
   background-color: hsl(0, 0%, 8%, 70%);
-  width: 256px;
+  width: 100%;
+  transition: top 1s;
+  overflow: hidden;
+}
+
+.artist:hover .artist-info {
+  top: 0;
 }
 
 .artist-info h2 {
-  margin-bottom: 0px;
+  margin: 0 0 0.3rem 0;
   line-height: 1em;
   font-size: 1.25rem;
-  margin-right: 8px;
 }
 
 .artist-info p {
-  margin: 0px 8px 8px 0px;
+  margin: 0;
+}
+
+.artist-links {
+  align-self: center;
+  margin: auto;
 }
 
 /* Form */
@@ -294,39 +294,52 @@ main.artists {
 }
 
 form {
-  margin-left: 48px;
+  position: relative;
   display: flex;
-  align-items: start;
+  justify-content: center;
+  align-items: flex-end;
 }
 
 form section:not(:last-child) {
-  flex-basis: 400px;
   display: none;
 }
 
 form section:target {
   display: block;
+  position: relative;
+  height: 60vh;
+  flex: 0 0 460px;
+  border: 2px solid white;
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+#overview {
+  position: absolute;
+  left: 25%;
+  flex: 0 0 200px;
+  order: -1;
 }
 
 form > section h2 {
   font-weight: 400;
   margin: 0 0 16px 0;
+  text-align: center;
 }
 
 form input:focus-within,
 form textarea:focus-within {
   outline: 0;
-  border: 2px solid hsl(120, 93%, 84%);
-}
-
-#overview {
-  margin-right: 6vw;
-  flex: 0 0 200px;
-  order: -1;
+  border: 2px solid hotpink;
 }
 
 form label img {
   width: 128px;
+  filter: grayscale(1);
+}
+
+form label img:hover {
+  filter: grayscale(0);
 }
 
 .artist input[type="checkbox"] {
@@ -336,31 +349,40 @@ form label img {
 .artist label {
   display: block;
   position: relative;
+  height: 100%;
   cursor: pointer;
 }
 
 label .artist-name {
   width: 100%;
   font-size: 0.8rem;
+  padding: 6px 16px;
   position: absolute;
-  bottom: 0px;
+  bottom: 0;
   text-align: right;
   background-color: hsl(0, 0%, 8%, 70%);
 }
 
-:checked + label {
-  border: 2px solid hsl(120, 93%, 84%);
+:checked + label img {
+  filter: grayscale(0);
 }
 
 #artists {
+  max-width: 600px;
   display: flex;
   flex-wrap: wrap;
-  max-width: 600px;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+#artists .artist {
+  height: 128px;
 }
 
 #about {
-  max-width: 1200px;
-  margin: 4vh auto;
+  max-width: 1000px;
+  margin-left: 5rem;
+  margin-right: 5rem;
 }
 
 form input,
@@ -379,6 +401,9 @@ form textarea {
 form nav {
   display: flex;
   justify-content: flex-end;
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
 }
 
 form nav > a {
@@ -394,4 +419,11 @@ form nav > a {
 form nav > a:focus-visible {
   outline: 0;
   border: 2px solid white;
+}
+
+form nav > a:hover {
+  border: 2px solid white;
+}
+.flex-container label {
+  margin-bottom: 0.7rem;
 }
