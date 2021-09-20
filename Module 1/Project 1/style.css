@@ -55,6 +55,11 @@ header {
   justify-content: right;
 }
 
+.nav-link.active {
+  color: hsl(0, 0%, 8%);
+  background-color: white;
+}
+
 .nav-link {
   text-decoration: none;
   padding: 16px;
@@ -65,10 +70,6 @@ header {
 
 .nav-link:last-of-type {
   border: none;
-}
-
-.nav-link:hover {
-  background-color: hsl(0, 0%, 10%);
 }
 
 .landingpage {
@@ -313,7 +314,7 @@ form section:not(:last-child) {
 form section:target {
   display: block;
   position: relative;
-  height: 60vh;
+  min-height: 60vh;
   flex: 0 0 460px;
   border: 2px solid white;
   border-radius: 1rem;
