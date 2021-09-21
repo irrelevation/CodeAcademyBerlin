@@ -248,12 +248,33 @@ img {
   margin: auto;
 }
 
-/* Form */
+/* About Page */
+
+#about {
+  max-width: min(800px, 90%);
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7rem;
+  text-align: justify;
+}
+
+/* Booking Page */
+
+#overview {
+  order: -1;
+  width: 100%;
+  display: flex;
+  margin-bottom: 2rem;
+  justify-content: center;
+  gap: 24px;
+}
 
 .overview-element {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
-  margin-bottom: 2rem;
   color: hsl(0, 0%, 33%);
 }
 
@@ -298,10 +319,9 @@ img {
 }
 
 form {
-  position: relative;
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
+  flex-direction: column;
+  align-items: center;
 }
 
 form section:not(:last-child) {
@@ -310,24 +330,15 @@ form section:not(:last-child) {
 
 form section:target {
   display: block;
-  position: relative;
-  min-height: 60vh;
-  flex: 0 0 460px;
   border: 2px solid white;
   border-radius: 1rem;
   padding: 2rem;
-}
-
-#overview {
-  position: absolute;
-  left: 25%;
-  flex: 0 0 200px;
-  order: -1;
+  max-width: 1000px;
+  min-width: 4 0vw;
 }
 
 form > section h2 {
   font-weight: 400;
-  margin: 0 0 16px 0;
   text-align: center;
 }
 
@@ -338,12 +349,21 @@ form textarea:focus-within {
 }
 
 form label img {
-  width: 128px;
   filter: grayscale(1);
 }
 
 form label img:hover {
   border: 2px solid white;
+}
+
+#artists {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 2em;
+}
+
+#artists .artist {
+  flex: 1 1 max(25%, 100px);
 }
 
 .artist input[type="checkbox"] {
@@ -372,31 +392,6 @@ label .artist-name {
   border: 2px solid white;
 }
 
-#artists {
-  max-width: 600px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 4px;
-}
-
-#artists .artist {
-  height: 128px;
-}
-
-/* About Page */
-
-#about {
-  max-width: min(800px, 90%);
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.7rem;
-  text-align: justify;
-}
-
-/* Booking Page */
-
 form input,
 form textarea {
   border-radius: 4px;
@@ -413,9 +408,6 @@ form textarea {
 form nav {
   display: flex;
   justify-content: flex-end;
-  position: absolute;
-  bottom: 16px;
-  right: 16px;
 }
 
 form nav > a {
