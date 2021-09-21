@@ -25,7 +25,7 @@
     </header>
 
     <main class="booking">
-        <form action="" role="form">
+        <form>
             <section id="select-artists">
                 <h2>Select Artists</h2>
                 <div id="artists">
@@ -126,7 +126,7 @@
             <section id="personal-info">
                 <div class="flex-container">
                     <h2>Personal Info</h2>
-                    <label for="Name">Name</label>
+                    <label for="name">Name</label>
                     <input type="text" name="name" id="name">
                     <label for="email">Email</label>
                     <input type="email" name="email" id="email">
@@ -134,7 +134,7 @@
                     <input type="text" name="organization" id="organization">
                     <nav>
                         <a href="#event-info">Back</a>
-                        <a href="#confirmation">Book Now</a>
+                        <a href="#confirmation" class="btn btn-warning">Book Now</a>
                     </nav>
                 </div>
                 
@@ -142,13 +142,24 @@
             <section id="confirmation">
                 <div class="flex-container">
                     <h2>Confirmation</h2>
-                    
+                    <ul>
+                        <li>
+                            Artists: Syriantal, Zusan
+                        </li>
+                        <li>
+                            Date: 24.12.2021
+                        </li>
+                        <li>
+                            Location: ://about blank
+                        </li>
+                    </ul>
+                    <p>Thank you for your Booking request. We will get back to you as soon as possible</p>
                     <nav>
                         <a href="#personal-info">Back</a>
                     </nav>
                 </div>
             </section>
-            <section id="overview">
+            <nav id="overview">
                 <div class="overview-element active">
                     <div class="overview-element-id id1">1</div>
                     Artists
@@ -165,7 +176,7 @@
                     <div class="overview-element-id">4</div>
                     Review
                 </div>
-            </section>
+            </nav>
         </form>
     </main>
     <footer>

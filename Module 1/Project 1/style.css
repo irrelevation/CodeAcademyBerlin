@@ -211,7 +211,7 @@ img {
 .artist {
   position: relative;
   overflow: hidden;
-  box-shadow: 4px black;
+  box-shadow: 0 2px 4px black;
   flex: 0 1 400px;
 }
 
@@ -334,12 +334,13 @@ form section:target {
   border-radius: 1rem;
   padding: 2rem;
   max-width: 1000px;
-  min-width: 4 0vw;
+  min-width: 30vw;
 }
 
 form > section h2 {
   font-weight: 400;
   text-align: center;
+  margin-top: 0;
 }
 
 form input:focus-within,
@@ -429,6 +430,21 @@ form nav > a:hover {
   background-color: white;
   color: hsl(0, 0%, 10%);
 }
+
+.btn {
+  background-color: var(--clr-primary, hsl(0, 0%, 10%));
+  color: var(--btn-color, white);
+  border: 2px solid var(--btn-color, white);
+}
+
+.btn:hover {
+  background-color: var(--btn-color);
+}
+
+.btn-warning {
+  --btn-color: rgb(131, 5, 74);
+}
+
 .flex-container label {
   margin-bottom: 0.7rem;
 }
