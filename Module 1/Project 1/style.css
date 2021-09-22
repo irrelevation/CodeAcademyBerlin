@@ -28,7 +28,7 @@ a {
 
 header {
   position: fixed;
-  width: 100%;
+  width: 100vw;
   display: flex;
   justify-content: center;
   height: 80px;
@@ -70,6 +70,18 @@ header {
   transform: translateX(0px);
 }
 
+:checked ~ .hamburger span {
+  transform: rotate(45deg) translate(2px, 4px);
+}
+
+:checked ~ .hamburger span:nth-of-type(2) {
+  transform: translate(-4px, -4px) rotate(-45deg);
+}
+
+:checked ~ .hamburger span:nth-of-type(3) {
+  opacity: 0;
+}
+
 .navbar > * {
   padding: 16px;
 }
@@ -89,7 +101,6 @@ header {
   position: absolute;
   top: 24px;
   left: 24px;
-  z-index: 100;
 }
 
 .hamburger span {
