@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+/* :root {
+  --clr-primary:
+} */
+
 body {
   padding: 0;
   margin: 0;
@@ -136,9 +140,29 @@ main {
   display: none;
 }
 
-#past:target,
-#upcoming:target {
+#past:target {
   display: initial;
+}
+
+#upcoming:target {
+  display: flex;
+}
+
+table {
+  border: none;
+  border-collapse: collapse;
+}
+
+thead {
+  border-bottom: 2px solid hsl(0, 0%, 33%);
+}
+th,
+td {
+  padding: 20px;
+}
+
+#past tr:nth-of-type(2n) {
+  background-color: hsl(0, 0%, 18%);
 }
 
 main.events {
