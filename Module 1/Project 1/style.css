@@ -6,9 +6,10 @@
   box-sizing: border-box;
 }
 
-/* :root {
-  --clr-primary:
-} */
+:root {
+  --clr-primary: white;
+  --clr-bg: hsl(0, 0%, 10%);
+}
 
 body {
   padding: 0;
@@ -26,6 +27,7 @@ a {
   color: white;
 }
 
+/* Header */
 header {
   position: fixed;
   width: 100vw;
@@ -53,6 +55,7 @@ header {
   margin-right: 24px;
 }
 
+/* Navigation */
 .navbar {
   position: absolute;
   top: 80px;
@@ -66,10 +69,7 @@ header {
   transition: all 300ms ease;
 }
 
-:checked ~ .navbar {
-  transform: translateX(0px);
-}
-
+/* Hamburger switch to X */
 :checked ~ .hamburger span {
   transform: rotate(45deg) translate(2px, 4px);
 }
@@ -80,6 +80,10 @@ header {
 
 :checked ~ .hamburger span:nth-of-type(3) {
   opacity: 0;
+}
+
+:checked ~ .navbar {
+  transform: translateX(0px);
 }
 
 .navbar > * {
@@ -93,24 +97,7 @@ header {
   letter-spacing: 0.2em;
 }
 
-#hamburger {
-  display: none;
-}
-
-.hamburger {
-  position: absolute;
-  top: 24px;
-  left: 24px;
-}
-
-.hamburger span {
-  display: block;
-  height: 8px;
-  width: 24px;
-  border-bottom: 3px solid white;
-  border-radius: 3px;
-}
-
+/* Navigation Small Screens */
 @media screen and (min-width: 820px) {
   .hamburger {
     display: none;
@@ -144,6 +131,49 @@ header {
     border: none;
   }
 }
+
+#hamburger {
+  display: none;
+}
+
+.hamburger {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+}
+
+.hamburger span {
+  display: block;
+  height: 8px;
+  width: 24px;
+  border-bottom: 3px solid white;
+  border-radius: 3px;
+}
+
+/* Main */
+
+main {
+  min-height: calc(100vh - 160px);
+  margin-top: 80px;
+  padding: 4vh;
+}
+
+/* Footer */
+
+footer {
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: hsl(0, 0%, 8%);
+  box-shadow: 0 0 4px 0 black;
+}
+
+footer a {
+  text-decoration: none;
+}
+
+/* Landing Page */
 
 .landingpage {
   display: flex;
@@ -181,25 +211,6 @@ header {
   100% {
     background-position: 0%;
   }
-}
-
-footer {
-  height: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: hsl(0, 0%, 8%);
-  box-shadow: 0 0 4px 0 black;
-}
-
-footer a {
-  text-decoration: none;
-}
-
-main {
-  min-height: calc(100vh - 160px);
-  margin-top: 80px;
-  padding: 4vh;
 }
 
 /* Events Page */
