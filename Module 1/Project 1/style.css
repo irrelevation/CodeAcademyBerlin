@@ -131,6 +131,16 @@ main {
 
 /* Events Page */
 
+#past,
+#upcoming {
+  display: none;
+}
+
+#past:target,
+#upcoming:target {
+  display: initial;
+}
+
 main.events {
   margin-left: auto;
   margin-right: auto;
@@ -151,17 +161,13 @@ main.events nav a:hover {
   text-decoration: underline;
 }
 
-/* main.events img {
-  width: 256px;
-} */
-
 .event {
   padding: 16px;
   background-color: hsl(0, 0%, 8%);
   border: 2px solid hsl(0, 0%, 33%);
   min-width: 200px;
   border-radius: 0.5rem;
-  flex-grow: 1;
+  flex: 1 1 300px;
 }
 
 .event-container {
@@ -176,6 +182,16 @@ main.events nav a:hover {
 
 time {
   color: hsl(0, 0%, 33%);
+}
+
+iframe {
+  position: absolute;
+  display: none;
+}
+
+.location:hover + iframe,
+iframe:hover {
+  display: initial;
 }
 
 .location::before {
@@ -276,6 +292,7 @@ img {
   text-transform: uppercase;
   letter-spacing: 0.1rem;
   color: hsl(0, 0%, 33%);
+  transition: all 500ms;
 }
 
 .overview-element-id {
@@ -288,6 +305,7 @@ img {
   border-radius: 50%;
   text-align: center;
   margin-right: 1rem;
+  transition: all 500ms;
 }
 
 /* Styling the overview depending on the form step */
@@ -419,6 +437,7 @@ form nav > a {
   padding: 8px 16px;
   margin-left: 16px;
   border: 2px solid white;
+  transition: all 500ms;
 }
 
 form nav > a:focus-visible {
