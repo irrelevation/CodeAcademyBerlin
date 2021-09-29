@@ -1,0 +1,11 @@
+POST https://api.github.com/graphql
+Content-Type: application/json
+X-Request-Type: GraphQL
+Authorization: Bearer {{$processEnv %GITHUB_API_KEY}}
+
+query {
+  rateLimit {
+    remaining
+    cost
+  }
+}
