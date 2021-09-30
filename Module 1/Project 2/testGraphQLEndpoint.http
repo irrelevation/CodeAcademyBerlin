@@ -9,3 +9,16 @@ query {
     cost
   }
 }
+
+### 
+
+GET https://api.github.com/user/FocusCookie/fm-time-tracking-dashboard
+
+###
+GET https://api.github.com/repos/FocusCookie/fm-time-tracking-dashboard/deployments
+
+###
+GET https://api.github.com/orgs/CodeAcademyBerlin/public_members
+
+###
+GET https://api.github.com/orgs/CodeAcademyBerlin/teams
