@@ -1,10 +1,12 @@
 @host = https://api.github.com/graphql
+@contentType = application/json
+@xRequestType= GraphQL
 
 ###
 
 POST {{host}}
-Content-Type: application/json
-X-Request-Type: GraphQL
+Content-Type: {{contentType}}
+X-Request-Type: {{xRequestType}}
 Authorization: Bearer {{GITHUB_API_KEY}}
 
 query {
@@ -19,3 +21,29 @@ query {
 }
 
 ### 
+
+POST {{host}}
+Content-Type: {{contentType}}
+X-Request-Type: {{xRequestType}}
+Authorization: Bearer {{GITHUB_API_KEY}}
+
+query {
+  user(login: "focuscookie") {
+    name
+    contributionsCollection {
+      contributionCalendar {
+        colors
+        totalContributions
+        weeks {
+          contributionDays {
+            color
+            contributionCount
+            date
+            weekday
+          }
+          firstDay
+        }
+      }
+    }
+  }
+}
