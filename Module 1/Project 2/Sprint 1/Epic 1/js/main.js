@@ -86,18 +86,28 @@ function printElement(array, index) {
 }
 
 // Exercise 6
+// A Multiset is a Set that keeps track of the number of identical elements added to it. It sometimes is called a counter.
+
+// I use Map as the parent class because a Multiset is a map-like object.
+// It has key value pairs just like a map with the exception, that its values are numbers, representing the number of times you added an element to the Multiset.
 class Multiset extends Map {
+  // Just like with a map, we want to be able to initialize a Multiset with an iterable.
   constructor(iterable) {
+    //we have to call super() in order to invoke the parent constructor and be able to use "this"
     super();
+    // we add all the elements if the iterable to our Multiset.
     for (const element of iterable) {
       this.add(element);
     }
   }
 
   add(element) {
+    // If the map allready has a count for the element we are trying to add
     if (this.has(element)) {
+      // we increase the value by 1.
       this.set(element, this.get(element) + 1);
     } else {
+      // Otherwise we set the value to 1;
       this.set(element, 1);
     }
   }
@@ -106,11 +116,14 @@ class Multiset extends Map {
 function printRepeatingElements(array) {
   let multiset = new Multiset(array);
   let repeatingElements = [];
-  for (const [key, value] of multiset) {
-    if (value > 1) {
-      repeatingElements.push(key);
+  // to check for repeating elements we check the count of each element in our multiset.
+  for (const [element, count] of multiset) {
+    // If the count is bigger than 1 it is a duplicate.
+    if (count > 1) {
+      repeatingElements.push(element);
     }
   }
+  // we log the result, giving the .sort() method a sort function, that will sort numbers ascendingly
   console.log(repeatingElements.sort((a, b) => a - b).join());
 }
 
