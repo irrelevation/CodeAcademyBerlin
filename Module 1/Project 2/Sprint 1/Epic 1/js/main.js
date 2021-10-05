@@ -86,21 +86,25 @@ function printElement(array, index) {
 }
 
 // Exercise 6
-// rename helper function, maybe even turn it into a type / constructor
-function getMultisetMap(array) {
-  let multiset = new Map();
-  array.forEach((element) => {
-    if (multiset.has(element)) {
-      multiset.set(element, multiset.get(element) + 1);
-    } else {
-      multiset.set(element, 1);
+class Multiset extends Map {
+  constructor(iterable) {
+    super();
+    for (const element of iterable) {
+      this.add(element);
     }
-  });
-  return multiset;
+  }
+
+  add(element) {
+    if (this.has(element)) {
+      this.set(element, this.get(element) + 1);
+    } else {
+      this.set(element, 1);
+    }
+  }
 }
 
 function printRepeatingElements(array) {
-  let multiset = getMultisetMap(array);
+  let multiset = new Multiset(array);
   let repeatingElements = [];
   for (const [key, value] of multiset) {
     if (value > 1) {
