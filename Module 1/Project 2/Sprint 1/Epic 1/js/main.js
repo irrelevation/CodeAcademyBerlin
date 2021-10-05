@@ -86,7 +86,7 @@ function printElement(array, index) {
 }
 
 // Exercise 6
-// rename helper function, maybe even turn it into a constructor
+// rename helper function, maybe even turn it into a type / constructor
 function getMultisetMap(array) {
   let multiset = new Map();
   array.forEach((element) => {
@@ -157,6 +157,6 @@ function getLongestWord(phrase) {
 
 console.log(
   getLongestWord(
-    "Hello, this is a serntence to test if this function returns 'Schifffahrtsgesellschaft."
+    "Hello, this is a se  ntence to test if this function returns 'Schifffahrtsgesellschaft."
   )
 );

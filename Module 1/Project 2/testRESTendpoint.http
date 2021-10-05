@@ -1,0 +1,20 @@
+@host = https://api.github.com
+@accept= application/vnd.github.v3+json
+
+###
+
+GET {{host}}/user/FocusCookie
+Accept: {{accept}}
+
+###
+GET {{host}}/repos/FocusCookie/fm-time-tracking-dashboard/deployments
+Accept: {{accept}}
+###
+GET {{host}}/repos/FocusCookie/fm-time-tracking-dashboard/pages
+Accept: {{accept}}
+###
+GET {{host}}/orgs/CodeAcademyBerlin/public_members
+Accept: {{accept}}
+###
+GET {{host}}/orgs/CodeAcademyBerlin/teams
+Accept: {{accept}}

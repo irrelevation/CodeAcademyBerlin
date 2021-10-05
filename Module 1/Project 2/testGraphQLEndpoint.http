@@ -1,4 +1,8 @@
-POST https://api.github.com/graphql
+@host = https://api.github.com/graphql
+
+###
+
+POST {{host}}
 Content-Type: application/json
 X-Request-Type: GraphQL
 Authorization: Bearer {{GITHUB_API_KEY}}
@@ -8,17 +12,10 @@ query {
     remaining
     cost
   }
+  user(login: "focuscookie") {
+    avatarUrl
+    bio
+  }
 }
 
 ### 
-
-GET https://api.github.com/user/FocusCookie/fm-time-tracking-dashboard
-
-###
-GET https://api.github.com/repos/FocusCookie/fm-time-tracking-dashboard/deployments
-
-###
-GET https://api.github.com/orgs/CodeAcademyBerlin/public_members
-
-###
-GET https://api.github.com/orgs/CodeAcademyBerlin/teams
