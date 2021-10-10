@@ -18,3 +18,8 @@ Accept: {{accept}}
 ###
 GET {{host}}/orgs/CodeAcademyBerlin/teams
 Accept: {{accept}}
+
+###
+
+GET {{host}}/users/irrelevation/repos
+Accep: {{accept}}

@@ -17,12 +17,6 @@ query {
   user(login: "focuscookie") {
     avatarUrl
     bio
-    location
-    repositories(first: 5) {
-      nodes {
-        name
-      }
-    }
   }
 }
 
