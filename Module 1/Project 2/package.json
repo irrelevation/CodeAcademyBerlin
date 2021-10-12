@@ -1,0 +1,17 @@
+{
+  "name": "gamify",
+  "version": "1.0.0",
+  "description": "A dashboard with gamification elements for our software bootcamp.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "dashboard",
+    "gamification",
+    "Bootstrap",
+    "GraphQL"
+  ],
+  "author": "Lukas Zöllner",
+  "license": "ISC"
+}

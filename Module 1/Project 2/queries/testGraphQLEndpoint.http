@@ -28,7 +28,7 @@ X-Request-Type: {{xRequestType}}
 Authorization: Bearer {{GITHUB_API_KEY}}
 
 query {
-  user(login: "focuscookie") {
+  user(login: "irrelevation") {
     name
     contributionsCollection {
       contributionCalendar {

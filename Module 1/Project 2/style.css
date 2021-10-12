@@ -1,0 +1,22 @@
+/* Calendar Widget */
+.github-calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 0.5rem;
+}
+
+.github-calendar > div {
+  aspect-ratio: 1;
+  border-radius: 8%;
+}
+
+.github-calendar :nth-child(3n) {
+  background-color: hsl(152, 69%, 31%);
+}
+.github-calendar :nth-child(3n + 1) {
+  background-color: hsl(152, 69%, 45%);
+}
+.github-calendar :nth-child(3n + 2) {
+  background-color: hsl(152, 69%, 19%);
+}
