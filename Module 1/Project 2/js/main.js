@@ -57,11 +57,20 @@ const createGithubCalendar = (githubData) => {
   const contributions = document.querySelector("#contributions");
   contributions.appendChild(document.createTextNode(githubData.user.contributionsCollection.contributionCalendar.totalContributions));
   
+  const legend = document.querySelector("#legend");
+  legend.appendChild(document.createTextNode("Less"));
+  for (const color of githubData.user.contributionsCollection.contributionCalendar.colors) {
+    const indicator = document.createElement("span");
+    indicator.style.backgroundColor = color;
+    indicator.classList.add("indicator");
+    legend.appendChild(indicator);
+  }
+  legend.appendChild(document.createTextNode("More"));
+
   const githubCalendar = document.querySelector(".github-calendar");
   for (const week of githubData.user.contributionsCollection.contributionCalendar.weeks){
     for (const weekday of week.contributionDays) {
       const day = document.createElement("div");
-      day.class = "github-calendar-day";
       day.dataset.bsToggle = "tooltip";
       day.dataset.bsPlacement = "top";
       day.title = `${weekday.contributionCount} contribution${weekday.contributionCount === 1 ? "" : "s"} on ${new Date(weekday.date).toDateString()}`;
