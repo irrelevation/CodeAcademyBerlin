@@ -1,5 +1,19 @@
 import { GITHUB_API_KEY } from "../dev/GITHUB_API_KEY.js";
 
+// User Card
+const createUserCard = ({avatarUrl, name, email}) => {
+  document.querySelector("#avatar").src = avatarUrl;
+  document.querySelector("#name").innerText = name;
+  document.querySelector("#email").innerText= email;
+}
+
+// Daily Goals Card
+const dailyGoalsProgressBar = document.querySelector(".progress-bar__progress");
+const dailyGoalsPercentage = .8;
+const circumference = 2 * 3.15 * 15;
+const strokeDashOffset = circumference - (dailyGoalsPercentage * circumference);
+dailyGoalsProgressBar.style.strokeDashoffset = strokeDashOffset;
+
 const fetchGithubData = ({ username, authToken, startDate, endDate }) => {
   const endpoint = "https://api.github.com/graphql";
   const headers = new Headers();
@@ -81,14 +95,8 @@ const createGithubCalendar = (githubData) => {
   }
 }
 
-const createUserCard = ({avatarUrl, name, email}) => {
-  document.querySelector("#avatar").src = avatarUrl;
-  document.querySelector("#name").innerText = name;
-  document.querySelector("#email").innerText= email;
-}
-
 fetchGithubData({
-  username: "focuscookie",
+  username: "irrelevation",
   authToken: GITHUB_API_KEY,
   startDate: "2021-09-01T00:00:00+0000",
   endDate: "2022-03-01T00:00:00+0000"})
