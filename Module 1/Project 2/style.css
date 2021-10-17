@@ -47,7 +47,10 @@
 }
 
 /* Achievements Card */
-.badge {
+.achievement-card {
+  max-width: 240px;
+}
+.achievement-icon {
   max-width: 100px;
   aspect-ratio: 1;
   border: 1px solid red;
@@ -55,7 +58,11 @@
   opacity: 50%;
 }
 
-.badge.enabled {
+.achievement-icon.enabled {
   filter: grayscale(0);
   opacity: 100%;
+}
+
+.achievement-progress {
+  height: 4px;
 }
