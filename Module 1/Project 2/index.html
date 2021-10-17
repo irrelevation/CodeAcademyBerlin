@@ -18,7 +18,7 @@
   </head>
   <body class="bg-white">
     <main class="container pt-sm-5">
-      <div class="row justify-content-center mb-4">
+      <div class="row justify-content-center">
         <!-- Profile Overview -->
         <div class="col-sm col-lg-4">
           <div class="card text-center p-3">
@@ -50,7 +50,7 @@
             </div>
           </div>
         </div>
-        <!-- Current Goals -->
+        <!-- Daily Goals -->
         <div class="col-sm col-lg-4">
           <div class="card text-center p-3">
             <a href="#" class="text-secondary text-end">change</a>
@@ -61,14 +61,30 @@
                 class="mb-4"
                 id="daily-goals-progress"
               >
-                <circle
-                  cx="17"
-                  cy="17"
-                  r="15"
-                  class="progress-bar__background"
-                />
-
-                <circle cx="17" cy="17" r="15" class="progress-bar__progress" />
+                <g transform="rotate(270, 17, 17)">
+                  <circle
+                    cx="17"
+                    cy="17"
+                    r="15"
+                    class="progress-bar__background"
+                  />
+                  <circle
+                    cx="17"
+                    cy="17"
+                    r="15"
+                    class="progress-bar__progress"
+                  />
+                </g>
+                <text
+                  x="50%"
+                  y="50%"
+                  dominant-baseline="middle"
+                  text-anchor="middle"
+                  font-size="6px"
+                  font-weight="bold"
+                >
+                  80%
+                </text>
               </svg>
               <h4>Daily Goal</h4>
               <h5>
@@ -80,19 +96,85 @@
         </div>
       </div>
       <!-- Github Calendar -->
-      <div class="row justify-content-center">
-        <div class="col-lg-8 card">
-          <div class="card-body">
-            <span class="fw-bolder me-4">TODO Month</span>
-            <span id="contributions" class="text-muted"
-              >Total Contributions -
-            </span>
-            <div class="github-calendar my-3"></div>
-            <div id="legend" class="float-end"></div>
+      <div class="row justify-content-center mt-4">
+        <div class="col-lg-8">
+          <div class="card p-3">
+            <div class="card-body">
+              <span class="fw-bolder me-4">TODO Month</span>
+              <span id="contributions" class="text-muted"
+                >Total Contributions -
+              </span>
+              <div class="github-calendar my-3"></div>
+              <div id="legend" class="float-end"></div>
+            </div>
           </div>
         </div>
       </div>
       <!-- Achievements -->
+      <div class="row justify-content-center mt-4">
+        <div class="col-lg-8">
+          <div class="card">
+            <div class="card-body">
+              <h2>Achievements</h2>
+              <svg
+                id="badge-repository"
+                class="badge"
+                viewBox="0 0 512 512"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <text
+                  x="50%"
+                  y="53%"
+                  dominant-baseline="middle"
+                  text-anchor="middle"
+                  font-size="128px"
+                  font-weight="bold"
+                >
+                  1
+                </text>
+                <circle
+                  cx="256"
+                  cy="256"
+                  r="96"
+                  style="
+                    fill: none;
+                    stroke: #000;
+                    stroke-linecap: round;
+                    stroke-linejoin: round;
+                    stroke-width: 32px;
+                  "
+                />
+                <line
+                  x1="160"
+                  y1="256"
+                  x2="48"
+                  y2="256"
+                  style="
+                    fill: none;
+                    stroke: #000;
+                    stroke-linecap: round;
+                    stroke-linejoin: round;
+                    stroke-width: 32px;
+                  "
+                />
+                <line
+                  x1="464"
+                  y1="256"
+                  x2="352"
+                  y2="256"
+                  style="
+                    fill: none;
+                    stroke: #000;
+                    stroke-linecap: round;
+                    stroke-linejoin: round;
+                    stroke-width: 32px;
+                  "
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"

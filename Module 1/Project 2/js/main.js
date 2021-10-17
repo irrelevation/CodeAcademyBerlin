@@ -1,4 +1,4 @@
-import { GITHUB_API_KEY } from "../dev/GITHUB_API_KEY.js";
+import { GITHUB_API_KEY } from "../dev/GITHUB_API_KEY.mjs";
 
 // User Card
 const createUserCard = ({avatarUrl, name, email}) => {
@@ -85,6 +85,7 @@ const createGithubCalendar = (githubData) => {
   for (const week of githubData.user.contributionsCollection.contributionCalendar.weeks){
     for (const weekday of week.contributionDays) {
       const day = document.createElement("div");
+      day.style.gridRowStart = weekday.weekday;
       day.dataset.bsToggle = "tooltip";
       day.dataset.bsPlacement = "top";
       day.title = `${weekday.contributionCount} contribution${weekday.contributionCount === 1 ? "" : "s"} on ${new Date(weekday.date).toDateString()}`;
