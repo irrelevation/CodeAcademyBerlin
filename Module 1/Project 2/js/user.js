@@ -14,15 +14,15 @@ const circumference = 2 * 3.15 * 15;
 const strokeDashOffset = circumference - dailyGoalsPercentage * circumference;
 dailyGoalsProgressBar.style.strokeDashoffset = strokeDashOffset;
 
-const fetchGithubData = ({ username, authToken, startDate, endDate }) => {
+const fetchGithubData = ({ githubLogin, authToken, startDate, endDate }) => {
   const endpoint = "https://api.github.com/graphql";
   const headers = new Headers();
   headers.append("Authorization", `Bearer ${authToken}`);
   headers.append("Content-Type", "application/graphql");
 
   const query = `
-    query ($username: String!, $startDate: DateTime, $endDate: DateTime) {
-      user(login: $username) {
+    query ($githubLogin: String!, $startDate: DateTime, $endDate: DateTime) {
+      user(login: $githubLogin) {
         name
         avatarUrl
         email
@@ -55,7 +55,7 @@ const fetchGithubData = ({ username, authToken, startDate, endDate }) => {
       }
     }
   `;
-  const variables = { username, startDate, endDate };
+  const variables = { githubLogin, startDate, endDate };
 
   const requestOptions = {
     method: "POST",
@@ -67,19 +67,15 @@ const fetchGithubData = ({ username, authToken, startDate, endDate }) => {
   return fetch(endpoint, requestOptions).then((res) => res.json());
 };
 
-const createGithubCalendar = (githubData) => {
+const createGithubCalendar = (contributionCalendar) => {
   const contributions = document.querySelector("#contributions");
   contributions.appendChild(
-    document.createTextNode(
-      githubData.user.contributionsCollection.contributionCalendar
-        .totalContributions
-    )
+    document.createTextNode(contributionCalendar.totalContributions)
   );
 
   const legend = document.querySelector("#legend");
   legend.appendChild(document.createTextNode("Less"));
-  for (const color of githubData.user.contributionsCollection
-    .contributionCalendar.colors) {
+  for (const color of contributionCalendar.colors) {
     const indicator = document.createElement("span");
     indicator.style.backgroundColor = color;
     indicator.classList.add("indicator");
@@ -88,8 +84,7 @@ const createGithubCalendar = (githubData) => {
   legend.appendChild(document.createTextNode("More"));
 
   const githubCalendar = document.querySelector(".github-calendar");
-  for (const week of githubData.user.contributionsCollection
-    .contributionCalendar.weeks) {
+  for (const week of contributionCalendar.weeks) {
     for (const weekday of week.contributionDays) {
       const day = document.createElement("div");
       day.style.gridRowStart = weekday.weekday;
@@ -105,21 +100,51 @@ const createGithubCalendar = (githubData) => {
   }
 };
 
+// Achievements Card
+import { achievements } from "./achievements.js";
+const renderAchievements = (user) => {
+  const achievementsContainer = document.querySelector(
+    "#achievements-container"
+  );
+  for (const achievement of achievements) {
+    achievementsContainer.appendChild(achievement.render(user));
+  }
+};
+
+// Main
+
+// this should be a class
+// const course = {
+//   title: "Web Developement",
+//   startDate: "2021-09-01T00:00:00+0000",
+//   endDate: "2022-03-01T00:00:00+0000",
+//   // projects:
+//   getProgress: function () {
+//     const duration = Date.parse(this.endDate) - Date.parse(this.startDate);
+//     const elapsed = Date.now() - Date.parse(this.startDate);
+//     return elapsed / duration;
+//   },
+// };
+import { course } from "./courses.js";
+console.log(course);
+
+const user = {
+  githubLogin: new URL(document.location).searchParams.get("githubLogin"),
+  course,
+};
+
 fetchGithubData({
-  username: "irrelevation",
+  githubLogin: user.githubLogin,
   authToken: GITHUB_API_KEY,
-  startDate: "2021-09-01T00:00:00+0000",
-  endDate: "2022-03-01T00:00:00+0000",
+  startDate: user.course.startDate,
+  endDate: user.course.endDate,
 })
   .then((result) => {
-    createUserCard(result.data.user);
-    createGithubCalendar(result.data);
+    user.githubData = result.data.user;
+    createUserCard(user.githubData);
+    createGithubCalendar(
+      user.githubData.contributionsCollection.contributionCalendar
+    );
+    renderAchievements(user);
   })
   .catch((error) => console.log("error", error));
-
-// Achievements
-import { achievements } from "./achievements.js";
-const achievementsContainer = document.querySelector("#achievements-container");
-for (const achievement of achievements) {
-  achievementsContainer.appendChild(achievement.render());
-}
