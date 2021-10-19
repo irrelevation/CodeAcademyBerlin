@@ -15,59 +15,6 @@ const circumference = 2 * 3.15 * 15;
 const strokeDashOffset = circumference - dailyGoalsPercentage * circumference;
 dailyGoalsProgressBar.style.strokeDashoffset = strokeDashOffset;
 
-const fetchGithubData = ({ githubLogin, authToken, startDate, endDate }) => {
-  const endpoint = "https://api.github.com/graphql";
-  const headers = new Headers();
-  headers.append("Authorization", `Bearer ${authToken}`);
-  headers.append("Content-Type", "application/graphql");
-
-  const query = `
-    query ($githubLogin: String!, $startDate: DateTime, $endDate: DateTime) {
-      user(login: $githubLogin) {
-        name
-        avatarUrl
-        email
-        twitterUsername
-        url
-        contributionsCollection(from: $startDate, to: $endDate) {
-          contributionCalendar {
-            colors
-            totalContributions
-            weeks {
-              contributionDays {
-                color
-                contributionCount
-                date
-                weekday
-              }
-              firstDay
-            }
-          }
-          totalCommitContributions
-          totalIssueContributions
-          totalPullRequestContributions
-          totalPullRequestReviewContributions
-          totalRepositoriesWithContributedCommits
-          totalRepositoriesWithContributedIssues
-          totalRepositoriesWithContributedPullRequestReviews
-          totalRepositoriesWithContributedPullRequests
-          totalRepositoryContributions
-        }
-      }
-    }
-  `;
-  const variables = { githubLogin, startDate, endDate };
-
-  const requestOptions = {
-    method: "POST",
-    headers: headers,
-    body: JSON.stringify({ query, variables }),
-    redirect: "follow",
-  };
-
-  return fetch(endpoint, requestOptions).then((res) => res.json());
-};
-
 const createGithubCalendar = (contributionCalendar) => {
   const contributions = document.querySelector("#contributions");
   contributions.appendChild(
@@ -96,7 +43,7 @@ const createGithubCalendar = (contributionCalendar) => {
       } on ${new Date(weekday.date).toDateString()}`;
       day.style.backgroundColor = weekday.color;
       githubCalendar.appendChild(day);
-      const tooltip = new bootstrap.Tooltip(day);
+      new bootstrap.Tooltip(day);
     }
   }
 };
@@ -115,17 +62,63 @@ const renderAchievements = (user) => {
 // Main
 
 import { course } from "./courses.js";
+import { fetchGithubData } from "./query.js";
 
 const user = {
   githubLogin: new URL(document.location).searchParams.get("githubLogin"),
   course,
 };
 
-fetchGithubData({
+const query = `
+query ($githubLogin: String!, $startDate: DateTime, $endDate: DateTime) {
+  user(login: $githubLogin) {
+    name
+    avatarUrl
+    email
+    twitterUsername
+    url
+    contributionsCollection(from: $startDate, to: $endDate) {
+      contributionCalendar {
+        colors
+        totalContributions
+        weeks {
+          contributionDays {
+            color
+            contributionCount
+            date
+            weekday
+          }
+          firstDay
+        }
+      }
+      totalCommitContributions
+      totalIssueContributions
+      totalPullRequestContributions
+      totalPullRequestReviewContributions
+      totalRepositoriesWithContributedCommits
+      totalRepositoriesWithContributedIssues
+      totalRepositoriesWithContributedPullRequestReviews
+      totalRepositoriesWithContributedPullRequests
+      totalRepositoryContributions
+    }
+    repositories {
+      nodes {
+        isFork
+      }
+    }
+  }
+}
+`;
+const variables = {
   githubLogin: user.githubLogin,
-  authToken: GITHUB_API_KEY,
   startDate: user.course.startDate,
   endDate: user.course.endDate,
+};
+
+fetchGithubData({
+  query,
+  variables,
+  authToken: GITHUB_API_KEY,
 })
   .then((result) => {
     user.githubData = result.data.user;
