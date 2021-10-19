@@ -1,3 +1,4 @@
+"use strict";
 import { GITHUB_API_KEY } from "../dev/GITHUB_API_KEY.mjs";
 
 // User Card
@@ -113,20 +114,7 @@ const renderAchievements = (user) => {
 
 // Main
 
-// this should be a class
-// const course = {
-//   title: "Web Developement",
-//   startDate: "2021-09-01T00:00:00+0000",
-//   endDate: "2022-03-01T00:00:00+0000",
-//   // projects:
-//   getProgress: function () {
-//     const duration = Date.parse(this.endDate) - Date.parse(this.startDate);
-//     const elapsed = Date.now() - Date.parse(this.startDate);
-//     return elapsed / duration;
-//   },
-// };
 import { course } from "./courses.js";
-console.log(course);
 
 const user = {
   githubLogin: new URL(document.location).searchParams.get("githubLogin"),
