@@ -1,3 +1,7 @@
 .clickable {
   cursor: pointer;
 }
+
+#avatar {
+  max-width: 100px;
+}
