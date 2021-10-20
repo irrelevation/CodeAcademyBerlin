@@ -78,25 +78,4 @@ export const course = {
       ],
     },
   ],
-  // This could get refactored into
-  //
-  // a) a method:
-  // getProgress: function () {
-  //   const duration = Date.parse(this.endDate) - Date.parse(this.startDate);
-  //   const elapsed = Date.now() - Date.parse(this.startDate);
-  //   return Math.min(elapsed / duration, 1);
-  // }
-  //
-  // b) a function:
-  // getProgress: function (dateRange) {
-  //   const duration = Date.parse(dateRange.endDate) - Date.parse(dateRange.startDate);
-  //   const elapsed = Date.now() - Date.parse(dateRange.startDate);
-  //   return Math.min(elapsed / duration, 1);
-  // }
-
-  getProgress: function () {
-    const duration = Date.parse(this.endDate) - Date.parse(this.startDate);
-    const elapsed = Date.now() - Date.parse(this.startDate);
-    return Math.min(elapsed / duration, 1);
-  },
 };

@@ -50,6 +50,10 @@
 .achievement-card {
   max-width: 240px;
 }
+.achievement-card:hover {
+  box-shadow: 4px 4px 16px #ddd;
+}
+
 .achievement-icon {
   max-width: 100px;
   aspect-ratio: 1;

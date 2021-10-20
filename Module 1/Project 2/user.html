@@ -111,36 +111,32 @@
         </div>
       </div>
       <!-- Achievements -->
-      <div class="row justify-content-center mt-4">
-        <div class="col-lg-8">
-          <div class="card">
-            <div class="card-body text-center">
-              <h2>Achievements</h2>
-              <div id="achievements-container" class="d-flex"></div>
-              <template id="achievement-card">
-                <div class="card achievement-card text-start p-3">
-                  <img
-                    src=""
-                    alt="Achievement Icon"
-                    class="achievement-icon img-fluid w-25 d-block mx-auto"
-                  />
-                  <div class="card-body">
-                    <h5 class="card-title"></h5>
-                    <p class="card-text"></p>
-                    <div class="progress achievement-progress">
-                      <div
-                        class="progress-bar progress-bar-striped bg-success"
-                        role="progressbar"
-                        aria-valuenow="0"
-                        aria-valuemin="0"
-                        aria-valuemax="100"
-                      ></div>
-                    </div>
-                  </div>
+      <div class="row justify-content-center mt-5">
+        <div class="col-lg-8 text-center">
+          <h2 class="mb-4">Achievements</h2>
+          <div id="achievements-container" class="d-flex flex-wrap gap-4"></div>
+          <template id="achievement-card">
+            <div class="card achievement-card text-start p-3">
+              <img
+                src=""
+                alt="Achievement Icon"
+                class="achievement-icon img-fluid w-25 d-block mx-auto"
+              />
+              <div class="card-body">
+                <h5 class="card-title"></h5>
+                <p class="card-text"></p>
+                <div class="progress achievement-progress">
+                  <div
+                    class="progress-bar progress-bar-striped bg-success"
+                    role="progressbar"
+                    aria-valuenow="0"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
                 </div>
-              </template>
+              </div>
             </div>
-          </div>
+          </template>
         </div>
       </div>
     </main>

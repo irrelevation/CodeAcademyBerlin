@@ -1,10 +1,9 @@
+import { getProgress } from "./utilities.js";
+
 // Achievements
-const createAchievement = ({ title, description, imageURL, getProgress }) => {
+const createAchievement = (achievement) => {
   return {
-    title,
-    description,
-    imageURL,
-    getProgress,
+    ...achievement,
     render: function (user) {
       const template = document.querySelector("#achievement-card");
       const achievement = template.content.cloneNode(true);
@@ -13,10 +12,10 @@ const createAchievement = ({ title, description, imageURL, getProgress }) => {
       const progress = this.getProgress(user);
       progressBar.style.width = `${progress * 100}%`;
       progressBar.ariaValuenow = progress * 100;
-      icon.src = imageURL;
+      icon.src = this.imageURL;
       if (progress === 1) icon.classList.add("enabled");
-      achievement.querySelector(".card-title").textContent = title;
-      achievement.querySelector(".card-text").textContent = description;
+      achievement.querySelector(".card-title").textContent = this.title;
+      achievement.querySelector(".card-text").textContent = this.description;
       return achievement;
     },
   };
@@ -36,7 +35,7 @@ const bergfest = createAchievement({
   description: "Finish the first half of the course.",
   imageURL: "img/bergfest.svg",
   getProgress: (user) => {
-    return Math.min(user.course.getProgress() * 2, 1);
+    return Math.min(getProgress(user.course) * 2, 1);
   },
 });
 achievements.push(bergfest);
@@ -46,10 +45,35 @@ const farewell = createAchievement({
   description: "Finish the course.",
   imageURL: "img/farewell.svg",
   getProgress: (user) => {
-    return user.course.getProgress();
+    return getProgress(user.course);
   },
 });
 achievements.push(farewell);
+
+const firstModule = createAchievement({
+  title: "First Module",
+  description: "Finish your first Module.",
+  imageURL: "img/firstModule.svg",
+  getProgress: (user) => {},
+});
+
+const secondModule = createAchievement({
+  title: "First Module",
+  description: "Finish your first Module.",
+  imageURL: "img/firstModule.svg",
+  getProgress: (user) => {
+    // TODO
+  },
+});
+
+const thirdModule = createAchievement({
+  title: "First Module",
+  description: "Finish your first Module.",
+  imageURL: "img/firstModule.svg",
+  getProgress: (user) => {
+    // TODO
+  },
+});
 
 const firstProject = createAchievement({
   title: "First Project",
@@ -92,7 +116,22 @@ const firstRepository = createAchievement({
   description: "Create your first repository on Github.",
   imageURL: "img/repository.svg",
   getProgress: (user) => {
-    // TODO
+    return user.githubData.contributionsCollection
+      .totalRepositoryContributions > 0
+      ? 1
+      : 0;
+  },
+});
+achievements.push(firstRepository);
+
+const Commit = createAchievement({
+  title: "First Commit",
+  description: "Make your first Commit.",
+  imageURL: "img/commit.svg",
+  getProgress: (user) => {
+    return user.githubData.contributionsCollection.totalCommitContributions > 0
+      ? 1
+      : 0;
   },
 });
 
@@ -100,47 +139,78 @@ const firstCommit = createAchievement({
   title: "First Commit",
   description: "Make your first Commit.",
   imageURL: "img/commit.svg",
-  getProgress: (data) => {
-    // TODO
+  getProgress: (user) => {
+    return user.githubData.contributionsCollection.totalCommitContributions > 0
+      ? 1
+      : 0;
   },
 });
+achievements.push(firstCommit);
 
 const firstIssue = createAchievement({
   title: "First Issue",
   description: "Create your first Issue on Github.",
   imageURL: "img/issue.svg",
-  getProgress: (data) => {
-    // TODO
+  getProgress: (user) => {
+    return user.githubData.contributionsCollection.totalIssueContributions > 0
+      ? 1
+      : 0;
   },
 });
+achievements.push(firstIssue);
 
 const firstFork = createAchievement({
   title: "First Fork",
   description: "Create your first Fork on Github.",
   imageURL: "img/fork.svg",
-  getProgress: (data) => {
-    // TODO
-    // user.repositories.some((repository) => repository.isFork === true)
+  getProgress: (user) => {
+    // this could be factored out into a utility function
+    return user.githubData.forks.nodes.some(
+      (fork) => Date.parse(fork.createdAt) > Date.parse(user.course.startDate)
+    )
+      ? 1
+      : 0;
   },
 });
+achievements.push(firstFork);
 
 const firstPullRequest = createAchievement({
   title: "First Pull Request",
   description: "Create your first Pull Request on Github.",
   imageURL: "img/pull-request.svg",
-  getProgress: (data) => {
-    // TODO
+  getProgress: (user) => {
+    return user.githubData.contributionsCollection
+      .totalPullRequestContributions > 0
+      ? 1
+      : 0;
   },
 });
+achievements.push(firstPullRequest);
 
 const perfectWeek = createAchievement({
   title: "Perfect Week",
   description: "Make a Github contribution on 7 consecutive days.",
-  imageURL: "img/perfekt-week.svg",
-  getProgress: (data) => {
-    // TODO
+  imageURL: "img/perfect-week.svg",
+  getProgress: (user) => {
+    const days =
+      user.githubData.contributionsCollection.contributionCalendar.weeks.flatMap(
+        (week) => week.contributionDays
+      );
+    console.log(days);
+    let counter = 0;
+    for (const day of days) {
+      if (day.contributionCount > 0) {
+        counter++;
+        if (counter === 7) return 1;
+      } else {
+        counter = 0;
+      }
+    }
+    console.log;
+    return counter / 7;
   },
 });
+achievements.push(perfectWeek);
 
 const goalkeeper = createAchievement({
   title: "Goalkeeper",
@@ -155,9 +225,21 @@ const getSomeRest = createAchievement({
   title: "Get Some Rest!",
   description: "Don't contribute anything on Github during a weekend.",
   imageURL: "img/get-some-rest.svg",
-  getProgress: (data) => {
-    // TODO
+  getProgress: (user) => {
+    // because github gives u a week starting with sunday, we transform the data
+    console.log(user.githubData);
+    const weeks =
+      user.githubData.contributionsCollection.contributionCalendar.weeks;
+    for (let i = 0; i < weeks.length - 2; i++) {
+      const saturday =
+        weeks[i].contributionDays[weeks[i].contributionDays.length - 1];
+      const sunday = weeks[i + 1].contributionDays[0];
+      if (saturday.contributionCount === 0 && sunday.contributionCount === 0)
+        return 1;
+    }
+    return 0;
   },
 });
+achievements.push(getSomeRest);
 
 export { achievements };

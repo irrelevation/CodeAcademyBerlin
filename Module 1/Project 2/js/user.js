@@ -88,7 +88,6 @@ query ($githubLogin: String!, $startDate: DateTime, $endDate: DateTime) {
             date
             weekday
           }
-          firstDay
         }
       }
       totalCommitContributions
@@ -101,7 +100,7 @@ query ($githubLogin: String!, $startDate: DateTime, $endDate: DateTime) {
       totalRepositoriesWithContributedPullRequests
       totalRepositoryContributions
     }
-    repositories(last: 1, isFork: true) {
+    forks: repositories(last: 1, isFork: true) {
       nodes {
         name
         url
@@ -123,8 +122,8 @@ fetchGithubData({
   authToken: GITHUB_API_KEY,
 })
   .then((result) => {
-    console.log(result);
     user.githubData = result.data.user;
+    console.log(user.githubData);
     createUserCard(user.githubData);
     createGithubCalendar(
       user.githubData.contributionsCollection.contributionCalendar
