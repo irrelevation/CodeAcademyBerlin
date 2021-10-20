@@ -101,9 +101,11 @@ query ($githubLogin: String!, $startDate: DateTime, $endDate: DateTime) {
       totalRepositoriesWithContributedPullRequests
       totalRepositoryContributions
     }
-    repositories {
+    repositories(last: 1, isFork: true) {
       nodes {
-        isFork
+        name
+        url
+        createdAt
       }
     }
   }
@@ -121,6 +123,7 @@ fetchGithubData({
   authToken: GITHUB_API_KEY,
 })
   .then((result) => {
+    console.log(result);
     user.githubData = result.data.user;
     createUserCard(user.githubData);
     createGithubCalendar(

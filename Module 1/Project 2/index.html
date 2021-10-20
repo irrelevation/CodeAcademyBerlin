@@ -23,17 +23,25 @@
           <div class="card p-3">
             <div class="card-body">
               <h1 class="course-nickname"></h1>
-              <button id="btn" class="btn btn-primary">TEST</button>
               <table class="table table-hover">
                 <thead>
                   <tr>
+                    <th scope="col">Avatar</th>
                     <th scope="col">First Name</th>
                     <th scope="col">Last Name</th>
                   </tr>
                 </thead>
                 <tbody id="course-members">
                   <template id="course-member">
-                    <tr>
+                    <tr class="clickable">
+                      <td>
+                        <img
+                          id="avatar"
+                          src=""
+                          alt="Profile picture"
+                          class="img-fluid w-25 mx-auto rounded-circle"
+                        />
+                      </td>
                       <td id="first-name"></td>
                       <td id="last-name"></td>
                     </tr>

@@ -3,13 +3,33 @@ export const course = {
   nickname: "Green Wombats",
   startDate: "2021-09-13T00:00:00+0000",
   endDate: "2022-03-01T00:00:00+0000",
-  members: [
-    { firstName: "Anan", lastName: "Tan", githubLogin: "anantancoding" },
-    { firstName: "Lukas", lastName: "Zöllner", githubLogin: "irrelevation" },
-    { firstName: "Annika", lastName: "Geffers", githubLogin: "BibiHuebner" },
-    { firstName: "Stephan", lastName: "Lüddemann", githubLogin: "focuscookie" },
-    { firstName: "Andreas", lastName: "Müller", githubLogin: "aeonyuonmiller" },
-  ],
+  members: {
+    anantancoding: {
+      firstName: "Anan",
+      lastName: "Tan",
+      githubLogin: "anantancoding",
+    },
+    irrelevation: {
+      firstName: "Lukas",
+      lastName: "Zöllner",
+      githubLogin: "irrelevation",
+    },
+    BibiHuebner: {
+      firstName: "Annika",
+      lastName: "Geffers",
+      githubLogin: "BibiHuebner",
+    },
+    focuscookie: {
+      firstName: "Stephan",
+      lastName: "Lüddemann",
+      githubLogin: "focuscookie",
+    },
+    aeonyuonmiller: {
+      firstName: "Andreas",
+      lastName: "Müller",
+      githubLogin: "aeonyuonmiller",
+    },
+  },
   modules: [
     {
       name: "Front-End Development",

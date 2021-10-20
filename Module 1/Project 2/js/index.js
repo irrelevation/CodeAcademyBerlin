@@ -1,54 +1,72 @@
 "use strict";
 import { course } from "./courses.js";
-const userURL = "";
+import { fetchGithubData } from "./query.js";
+import { GITHUB_API_KEY as authToken } from "../dev/GITHUB_API_KEY.mjs";
 
 document.querySelector(".course-nickname").textContent = course.nickname;
 
-const renderMember = ({ firstName, lastName }) => {
-  const member = document
+const createMemberElement = ({ firstName, lastName, avatarUrl }) => {
+  const memberElement = document
     .querySelector("#course-member")
-    .content.cloneNode(true);
-  member.querySelector("#first-name").textContent = firstName;
-  member.querySelector("#last-name").textContent = lastName;
+    .content.firstElementChild.cloneNode(true);
+  memberElement.querySelector("#first-name").textContent = firstName;
+  memberElement.querySelector("#last-name").textContent = lastName;
+  memberElement.querySelector("#avatar").src = avatarUrl;
+  return memberElement;
+};
 
-  return member;
+// Add HTML to page
+const renderMemberTable = (course) => {
+  const memberContainer = document.querySelector("#course-members");
+  for (const member of Object.values(course.members)) {
+    const memberElement = createMemberElement(member);
+    memberContainer.appendChild(memberElement);
+    memberElement.addEventListener("click", () => {
+      window.location.href += `user.html?githubLogin=${member.githubLogin}`;
+    });
+  }
+};
+
+// TODO find a better name
+const updateUser = (userID, entry) => {
+  course.members[userID] = {
+    ...course.members[userID],
+    ...entry,
+  };
 };
 
 // Get data from Github
-// import { getGithubData } from "./query.js";
-// ${member.githubUsername}: user(login: "${member.githubUsername}") {
-//   ...UserFragment
-// }`
-// const query = `
-// query {
-//   user1: user(login: "aisalmi") {
-//     ...UserFragment
-//   }
-//   user2: user(login: "bertrandmartel") {
-//     ...UserFragment
-//   }
-//   user3: user(login: "molokoloco") {
-//     ...UserFragment
-//   }
-// }
+// Ugly, needs some refactoring
+const buildMultiUserQuery = (users, fields) => {
+  const userString = Object.values(users).reduce((current, next) => {
+    return `
+    ${current}
+    ${next.githubLogin}: user(login: "${next.githubLogin}") {
+      ...UserFragment
+    }`;
+  }, "");
 
-// fragment UserFragment on User {
-//   avatarUrl
-// }`
-// const githubData
-
-// Add HTML to page
-const memberContainer = document.querySelector("#course-members");
-for (const member of course.members) {
-  const memberElement = renderMember(member);
-  memberContainer.appendChild(memberElement);
-  memberElement.addEventListener("click", () => {
-    console.log(window.location);
-    window.location += `user.html?githubLogin=${member.githubLogin}`;
+  return `
+  query {
+    ${userString}
+  }
+  
+  fragment UserFragment on User {
+    ${fields.join("\n")}
+  }`;
+};
+const query = buildMultiUserQuery(course.members, ["avatarUrl", "email"]);
+fetchGithubData({
+  query,
+  variables: {},
+  authToken,
+})
+  .then((result) => {
+    for (const [userID, entry] of Object.entries(result.data)) {
+      updateUser(userID, entry);
+    }
+    renderMemberTable(course);
+  })
+  .catch((err) => {
+    console.log(err);
   });
-}
-
-document.querySelector("#btn").addEventListener("click", () => {
-  console.log(window.location);
-  window.location += `user.html?githubLogin=irrelevation`;
-});
