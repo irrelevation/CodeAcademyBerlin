@@ -124,17 +124,6 @@ const firstRepository = createAchievement({
 });
 achievements.push(firstRepository);
 
-const Commit = createAchievement({
-  title: "First Commit",
-  description: "Make your first Commit.",
-  imageURL: "img/commit.svg",
-  getProgress: (user) => {
-    return user.githubData.contributionsCollection.totalCommitContributions > 0
-      ? 1
-      : 0;
-  },
-});
-
 const firstCommit = createAchievement({
   title: "First Commit",
   description: "Make your first Commit.",
@@ -196,7 +185,6 @@ const perfectWeek = createAchievement({
       user.githubData.contributionsCollection.contributionCalendar.weeks.flatMap(
         (week) => week.contributionDays
       );
-    console.log(days);
     let counter = 0;
     for (const day of days) {
       if (day.contributionCount > 0) {
@@ -206,7 +194,6 @@ const perfectWeek = createAchievement({
         counter = 0;
       }
     }
-    console.log;
     return counter / 7;
   },
 });
@@ -227,7 +214,6 @@ const getSomeRest = createAchievement({
   imageURL: "img/get-some-rest.svg",
   getProgress: (user) => {
     // because github gives u a week starting with sunday, we transform the data
-    console.log(user.githubData);
     const weeks =
       user.githubData.contributionsCollection.contributionCalendar.weeks;
     for (let i = 0; i < weeks.length - 2; i++) {

@@ -35,6 +35,13 @@ const updateUser = (userID, entry) => {
   };
 };
 
+const updateUserWithoutSpread = (userID, entry) => {
+  const user = course.members[userID];
+  Object.entries(entry).forEach(([key, value]) => {
+    user[key] = value;
+  });
+};
+
 // Get data from Github
 // Ugly, needs some refactoring
 const buildMultiUserQuery = (users, fields) => {
