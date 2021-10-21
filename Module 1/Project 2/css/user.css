@@ -48,7 +48,7 @@
 
 /* Achievements Card */
 .achievement-card {
-  max-width: 240px;
+  flex: 0 1 240px;
 }
 .achievement-card:hover {
   box-shadow: 4px 4px 16px #ddd;
@@ -58,7 +58,7 @@
   max-width: 100px;
   aspect-ratio: 1;
   filter: grayscale(1);
-  opacity: 50%;
+  opacity: 20%;
 }
 
 .achievement-icon.enabled {

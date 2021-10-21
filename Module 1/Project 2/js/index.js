@@ -3,9 +3,11 @@ import { course } from "./courses.js";
 import { fetchGithubData } from "./query.js";
 import { GITHUB_API_KEY as authToken } from "../dev/GITHUB_API_KEY.mjs";
 
-document.querySelector(".course-nickname").textContent = course.nickname;
+function renderCourseinfo(course) {
+  document.querySelector(".course-nickname").textContent = course.nickname;
+}
 
-const createMemberElement = ({ firstName, lastName, avatarUrl }) => {
+function createMemberElement({ firstName, lastName, avatarUrl }) {
   const memberElement = document
     .querySelector("#course-member")
     .content.firstElementChild.cloneNode(true);
@@ -13,10 +15,10 @@ const createMemberElement = ({ firstName, lastName, avatarUrl }) => {
   memberElement.querySelector("#last-name").textContent = lastName;
   memberElement.querySelector("#avatar").src = avatarUrl;
   return memberElement;
-};
+}
 
 // Add HTML to page
-const renderMemberTable = (course) => {
+function renderMemberTable(course) {
   const memberContainer = document.querySelector("#course-members");
   for (const member of Object.values(course.members)) {
     const memberElement = createMemberElement(member);
@@ -25,26 +27,19 @@ const renderMemberTable = (course) => {
       window.location.href += `user.html?githubLogin=${member.githubLogin}`;
     });
   }
-};
+}
 
 // TODO find a better name
-const updateUser = (userID, entry) => {
+function updateUser(userID, entry) {
   course.members[userID] = {
     ...course.members[userID],
     ...entry,
   };
-};
-
-const updateUserWithoutSpread = (userID, entry) => {
-  const user = course.members[userID];
-  Object.entries(entry).forEach(([key, value]) => {
-    user[key] = value;
-  });
-};
+}
 
 // Get data from Github
-// Ugly, needs some refactoring
-const buildMultiUserQuery = (users, fields) => {
+// Ugly, might need some refactoring
+function buildMultiUserQuery(users, fields) {
   const userString = Object.values(users).reduce((current, next) => {
     return `
     ${current}
@@ -61,17 +56,18 @@ const buildMultiUserQuery = (users, fields) => {
   fragment UserFragment on User {
     ${fields.join("\n")}
   }`;
-};
+}
+
 const query = buildMultiUserQuery(course.members, ["avatarUrl", "email"]);
 fetchGithubData({
-  query,
-  variables: {},
   authToken,
+  query,
 })
   .then((result) => {
     for (const [userID, entry] of Object.entries(result.data)) {
       updateUser(userID, entry);
     }
+    renderCourseinfo(course);
     renderMemberTable(course);
   })
   .catch((err) => {

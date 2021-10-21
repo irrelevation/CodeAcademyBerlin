@@ -1,63 +1,80 @@
 "use strict";
 import { GITHUB_API_KEY } from "../dev/GITHUB_API_KEY.mjs";
+import { calendarOf } from "./utilities.js";
 
 // User Card
-const createUserCard = ({ avatarUrl, name, email }) => {
+function renderOverview({ avatarUrl, name, email }) {
   document.querySelector("#avatar").src = avatarUrl;
   document.querySelector("#name").innerText = name;
   document.querySelector("#email").innerText = email;
-};
+}
 
 // Daily Goals Card
-const dailyGoalsProgressBar = document.querySelector(".progress-bar__progress");
-const dailyGoalsPercentage = 0.8;
-const circumference = 2 * 3.15 * 15;
-const strokeDashOffset = circumference - dailyGoalsPercentage * circumference;
-dailyGoalsProgressBar.style.strokeDashoffset = strokeDashOffset;
+updateDailyGoal(80);
 
-const createGithubCalendar = (contributionCalendar) => {
-  const contributions = document.querySelector("#contributions");
-  contributions.appendChild(
-    document.createTextNode(contributionCalendar.totalContributions)
+function updateDailyGoal(percentage) {
+  const dailyGoalsProgressBar = document.querySelector(
+    ".progress-bar__progress"
   );
+  const circumference = 2 * 3.15 * 15;
+  const strokeDashOffset = circumference - (percentage / 100) * circumference;
+  dailyGoalsProgressBar.style.strokeDashoffset = strokeDashOffset;
+}
 
-  const legend = document.querySelector("#legend");
-  legend.appendChild(document.createTextNode("Less"));
-  for (const color of contributionCalendar.colors) {
-    const indicator = document.createElement("span");
-    indicator.style.backgroundColor = color;
-    indicator.classList.add("indicator");
-    legend.appendChild(indicator);
+// Github Calendar Card
+function renderGithubCalendar(contributionCalendar) {
+  renderHeader();
+  renderGrid();
+  renderLegend();
+
+  function renderHeader() {
+    const contributions = document.querySelector("#contributions");
+    contributions.appendChild(
+      document.createTextNode(contributionCalendar.totalContributions)
+    );
   }
-  legend.appendChild(document.createTextNode("More"));
 
-  const githubCalendar = document.querySelector(".github-calendar");
-  for (const week of contributionCalendar.weeks) {
-    for (const weekday of week.contributionDays) {
-      const day = document.createElement("div");
-      day.style.gridRowStart = weekday.weekday;
-      day.dataset.bsToggle = "tooltip";
-      day.dataset.bsPlacement = "top";
-      day.title = `${weekday.contributionCount} contribution${
-        weekday.contributionCount === 1 ? "" : "s"
-      } on ${new Date(weekday.date).toDateString()}`;
-      day.style.backgroundColor = weekday.color;
-      githubCalendar.appendChild(day);
-      new bootstrap.Tooltip(day);
+  function renderGrid() {
+    const githubCalendar = document.querySelector(".github-calendar");
+    for (const week of contributionCalendar.weeks) {
+      for (const weekday of week.contributionDays) {
+        const day = document.createElement("div");
+        day.style.gridRowStart = weekday.weekday;
+        day.dataset.bsToggle = "tooltip";
+        day.dataset.bsPlacement = "top";
+        day.title = `${weekday.contributionCount} contribution${
+          weekday.contributionCount === 1 ? "" : "s"
+        } on ${new Date(weekday.date).toDateString()}`;
+        day.style.backgroundColor = weekday.color;
+        githubCalendar.appendChild(day);
+        new bootstrap.Tooltip(day);
+      }
     }
   }
-};
+
+  function renderLegend() {
+    const legend = document.querySelector("#legend");
+    legend.appendChild(document.createTextNode("Less"));
+    for (const color of contributionCalendar.colors) {
+      const indicator = document.createElement("span");
+      indicator.style.backgroundColor = color;
+      indicator.classList.add("indicator");
+      legend.appendChild(indicator);
+    }
+    legend.appendChild(document.createTextNode("More"));
+  }
+}
 
 // Achievements Card
 import { achievements } from "./achievements.js";
-const renderAchievements = (user) => {
+function renderAchievements(user) {
   const achievementsContainer = document.querySelector(
     "#achievements-container"
   );
   for (const achievement of achievements) {
     achievementsContainer.appendChild(achievement.render(user));
   }
-};
+}
 
 // Main
 
@@ -124,10 +141,8 @@ fetchGithubData({
   .then((result) => {
     user.githubData = result.data.user;
     console.log(user.githubData);
-    createUserCard(user.githubData);
-    createGithubCalendar(
-      user.githubData.contributionsCollection.contributionCalendar
-    );
+    renderOverview(user.githubData);
+    renderGithubCalendar(calendarOf(user));
     renderAchievements(user);
   })
   .catch((error) => console.log("error", error));

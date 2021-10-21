@@ -1,4 +1,4 @@
-import { getProgress } from "./utilities.js";
+import { getProgress, calendarOf } from "./utilities.js";
 
 // Achievements
 const createAchievement = (achievement) => {
@@ -49,67 +49,6 @@ const farewell = createAchievement({
   },
 });
 achievements.push(farewell);
-
-const firstModule = createAchievement({
-  title: "First Module",
-  description: "Finish your first Module.",
-  imageURL: "img/firstModule.svg",
-  getProgress: (user) => {},
-});
-
-const secondModule = createAchievement({
-  title: "First Module",
-  description: "Finish your first Module.",
-  imageURL: "img/firstModule.svg",
-  getProgress: (user) => {
-    // TODO
-  },
-});
-
-const thirdModule = createAchievement({
-  title: "First Module",
-  description: "Finish your first Module.",
-  imageURL: "img/firstModule.svg",
-  getProgress: (user) => {
-    // TODO
-  },
-});
-
-const firstProject = createAchievement({
-  title: "First Project",
-  description: "Finish your first Project.",
-  imageURL: "img/firstProject.svg",
-  getProgress: (user) => {
-    // TODO
-  },
-});
-
-const secondProject = createAchievement({
-  title: "Second Project",
-  description: "Finish your second Project.",
-  imageURL: "img/secondProject.svg",
-  getProgress: (data) => {
-    // TODO
-  },
-});
-
-const thirdProject = createAchievement({
-  title: "Third Project",
-  description: "Finish your third Project.",
-  imageURL: "img/thirdProject.svg",
-  getProgress: (data) => {
-    // TODO
-  },
-});
-
-const fourthProject = createAchievement({
-  title: "Fourth Project",
-  description: "Finish your fourth Project.",
-  imageURL: "img/fourthProject.svg",
-  getProgress: (data) => {
-    // TODO
-  },
-});
 
 const firstRepository = createAchievement({
   title: "First Repository",
@@ -181,10 +120,9 @@ const perfectWeek = createAchievement({
   description: "Make a Github contribution on 7 consecutive days.",
   imageURL: "img/perfect-week.svg",
   getProgress: (user) => {
-    const days =
-      user.githubData.contributionsCollection.contributionCalendar.weeks.flatMap(
-        (week) => week.contributionDays
-      );
+    const days = calendarOf(user).weeks.flatMap(
+      (week) => week.contributionDays
+    );
     let counter = 0;
     for (const day of days) {
       if (day.contributionCount > 0) {
@@ -213,12 +151,11 @@ const getSomeRest = createAchievement({
   description: "Don't contribute anything on Github during a weekend.",
   imageURL: "img/get-some-rest.svg",
   getProgress: (user) => {
-    // because github gives u a week starting with sunday, we transform the data
-    const weeks =
-      user.githubData.contributionsCollection.contributionCalendar.weeks;
+    // The Github GraphQL API returns a week starting with Sunday at index 0
+    const weeks = calendarOf(user).weeks;
     for (let i = 0; i < weeks.length - 2; i++) {
-      const saturday =
-        weeks[i].contributionDays[weeks[i].contributionDays.length - 1];
+      const week = weeks[i].contributionDays;
+      const saturday = week[week.length - 1];
       const sunday = weeks[i + 1].contributionDays[0];
       if (saturday.contributionCount === 0 && sunday.contributionCount === 0)
         return 1;
@@ -227,5 +164,66 @@ const getSomeRest = createAchievement({
   },
 });
 achievements.push(getSomeRest);
+
+const firstModule = createAchievement({
+  title: "First Module",
+  description: "Finish your first Module.",
+  imageURL: "img/firstModule.svg",
+  getProgress: (user) => {},
+});
+
+const secondModule = createAchievement({
+  title: "First Module",
+  description: "Finish your first Module.",
+  imageURL: "img/firstModule.svg",
+  getProgress: (user) => {
+    // TODO
+  },
+});
+
+const thirdModule = createAchievement({
+  title: "First Module",
+  description: "Finish your first Module.",
+  imageURL: "img/firstModule.svg",
+  getProgress: (user) => {
+    // TODO
+  },
+});
+
+const firstProject = createAchievement({
+  title: "First Project",
+  description: "Finish your first Project.",
+  imageURL: "img/firstProject.svg",
+  getProgress: (user) => {
+    // TODO
+  },
+});
+
+const secondProject = createAchievement({
+  title: "Second Project",
+  description: "Finish your second Project.",
+  imageURL: "img/secondProject.svg",
+  getProgress: (data) => {
+    // TODO
+  },
+});
+
+const thirdProject = createAchievement({
+  title: "Third Project",
+  description: "Finish your third Project.",
+  imageURL: "img/thirdProject.svg",
+  getProgress: (data) => {
+    // TODO
+  },
+});
+
+const fourthProject = createAchievement({
+  title: "Fourth Project",
+  description: "Finish your fourth Project.",
+  imageURL: "img/fourthProject.svg",
+  getProgress: (data) => {
+    // TODO
+  },
+});
 
 export { achievements };

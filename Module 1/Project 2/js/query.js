@@ -1,4 +1,4 @@
-export const fetchGithubData = ({ query, variables, authToken }) => {
+export const fetchGithubData = ({ authToken, query, variables = {} }) => {
   const endpoint = "https://api.github.com/graphql";
   const headers = new Headers();
   headers.append("Authorization", `Bearer ${authToken}`);

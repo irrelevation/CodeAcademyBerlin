@@ -20,7 +20,8 @@
     <main class="container pt-sm-5">
       <div class="row justify-content-center">
         <!-- Profile Overview -->
-        <div class="col-sm col-lg-4">
+        <div class="col-sm col-lg-4 text-center">
+          <h2 class="mb-3">Overview</h2>
           <div class="card text-center p-3">
             <a href="#" class="text-end text-secondary">change</a>
             <img
@@ -37,6 +38,7 @@
               <p class="text-start mb-1">Course Progress:</p>
               <div class="progress rounded-pill">
                 <div
+                  id="course-progress"
                   class="progress-bar rounded-pill bg-success"
                   role="progressbar"
                   style="width: 25%"
@@ -51,7 +53,8 @@
           </div>
         </div>
         <!-- Daily Goals -->
-        <div class="col-sm col-lg-4">
+        <div class="col-sm col-lg-4 text-center">
+          <h2 class="mb-3">Daily Goal</h2>
           <div class="card text-center p-3">
             <a href="#" class="text-secondary text-end">change</a>
             <div class="card-body">
@@ -86,7 +89,6 @@
                   80%
                 </text>
               </svg>
-              <h4>Daily Goal</h4>
               <h5>
                 <span class="text-success">13</span
                 ><span class="text-muted"> / </span>22
@@ -96,11 +98,11 @@
         </div>
       </div>
       <!-- Github Calendar -->
-      <div class="row justify-content-center mt-4">
-        <div class="col-lg-8">
+      <div class="row justify-content-center mt-5">
+        <div class="col-lg-8 text-center">
+          <h2 class="mb-3">Contribution Calendar</h2>
           <div class="card p-3">
             <div class="card-body">
-              <span class="fw-bolder me-4">TODO Month</span>
               <span id="contributions" class="text-muted"
                 >Total Contributions -
               </span>
@@ -113,8 +115,11 @@
       <!-- Achievements -->
       <div class="row justify-content-center mt-5">
         <div class="col-lg-8 text-center">
-          <h2 class="mb-4">Achievements</h2>
-          <div id="achievements-container" class="d-flex flex-wrap gap-4"></div>
+          <h2 class="mb-3">Achievements</h2>
+          <div
+            id="achievements-container"
+            class="d-flex flex-wrap justify-content-center gap-4"
+          ></div>
           <template id="achievement-card">
             <div class="card achievement-card text-start p-3">
               <img
