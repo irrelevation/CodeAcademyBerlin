@@ -4,7 +4,7 @@ import { getProgress, calendarOf } from "./utilities.js";
 const createAchievement = (achievement) => {
   return {
     ...achievement,
-    render: function (user) {
+    render(user) {
       const template = document.querySelector("#achievement-card");
       const achievement = template.content.cloneNode(true);
       const icon = achievement.querySelector(".achievement-icon");
